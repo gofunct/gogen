@@ -86,7 +86,7 @@ var pushCmd = &cobra.Command{
 			if err != nil {
 				logger.Fatal("failed to stage files", zap.Error(err))
 			}
-			logger.Info("Waiting for command to finish...")
+			logger.Debug("Waiting for command to finish...")
 			out, _ := ioutil.ReadAll(stderr)
 			fmt.Printf("%s\n", out)
 
