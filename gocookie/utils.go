@@ -6,6 +6,7 @@ import (
 	"log"
 )
 
+//returns sprig funcs
 func List() {
 	list := []string{}
 	funcs := sprig.GenericFuncMap()
