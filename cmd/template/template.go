@@ -33,16 +33,12 @@ var (
 	logger = logging.NewLogger()
 	goPath = os.Getenv("GOPATH")
 	destPath string
-	cookie *gocookie.GoCookieConfig
+	cookie  *gocookie.GoCookieConfig
 )
 
 func init() {
 	logger.AddColor()
-	var err error
-	cookie, err = gocookie.NewGoCookieConfig()
-	if err != nil {
-		log.Fatal("failed to inititalize gocookie config", err)
-	}
+
 	log.SetOutput(kitlog.NewStdlibAdapter(logger.KitLog))
 	TemplateCmd.AddCommand(genCmd)
 	TemplateCmd.AddCommand(funcCmd)
