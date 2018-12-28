@@ -18,9 +18,12 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var (
+	remoteUrl			string
+)
 
 func init() {
-	gitCmd.PersistentFlags().StringVarP(&url, "url", "u", "", "url of target repo")
+	gitCmd.PersistentFlags().StringVarP(&remoteUrl, "url", "u", "", "remote url of target repo")
 }
 
 var gitCmd = &cobra.Command{

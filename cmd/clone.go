@@ -21,14 +21,8 @@
 package cmd
 
 import (
-	"gopkg.in/src-d/go-billy.v4/memfs"
-	"gopkg.in/src-d/go-git.v4"
-	"gopkg.in/src-d/go-git.v4/storage/memory"
-	"io"
-	"log"
-	"os"
-
 	"github.com/spf13/cobra"
+	"os/exec"
 )
 
 func init() {
@@ -38,27 +32,13 @@ func init() {
 // cloneCmd represents the clone command
 var cloneCmd = &cobra.Command{
 	Use:   "clone",
-	Short: "A brief description of your command",
-	Run: func(cmd *cobra.Command, args []string) {
-		// Filesystem abstraction based on memory
-		fs := memfs.New()
-		// Git objects storer based on memory
-		storer := memory.NewStorage()
-		// Clones the repository into the worktree (fs) and storer all the .git
-		// content into the storer
-		_, err := git.Clone(storer, fs, &git.CloneOptions{
-			URL: url,
-		})
+	Short: "clone a git repo",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		c := exec.Command("git", "clone", "--progress", remoteUrl)
+		err := c.Run()
 		if err != nil {
-			log.Fatal(err)
+			return err
 		}
-
-		// Prints the content of the CHANGELOG file from the cloned repository
-		changelog, err := fs.Open("CHANGELOG")
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		io.Copy(os.Stdout, changelog)
+	return nil
 	},
 }

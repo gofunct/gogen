@@ -23,7 +23,7 @@ import (
 
 var (
 	logger, _ = zap.NewDevelopment()
-	url       string
+	goPath = os.Getenv("GOPATH")
 )
 
 // rootCmd represents the base command when called without any subcommands
