@@ -16,26 +16,28 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/gofunct/common/logging"
+	"github.com/gofunct/gocookiecutter/cmd/docker"
+	"github.com/gofunct/gocookiecutter/cmd/git"
+	"github.com/gofunct/gocookiecutter/cmd/protoc"
+	"github.com/gofunct/gocookiecutter/cmd/template"
 	"github.com/spf13/cobra"
-	"go.uber.org/zap"
 	"os"
-	"sync"
 )
 
 var (
-	logger, _ = zap.NewDevelopment()
+	logger = logging.Base()
 	goPath = os.Getenv("GOPATH")
-	wg sync.WaitGroup
 )
 
-// rootCmd represents the base command when called without any subcommands
-var rootCmd = &cobra.Command{
+// RootCmd represents the base command when called without any subcommands
+var RootCmd = &cobra.Command{
 	Use:   "gocookiecutter",
 	Short: "A brief description of your application",
 }
 
 func Execute() {
-	if err := rootCmd.Execute(); err != nil {
+	if err := RootCmd.Execute(); err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
@@ -43,11 +45,13 @@ func Execute() {
 
 func init() {
 	{
-		rootCmd.AddCommand(gitCmd)
-		rootCmd.AddCommand(dockerCmd)
+		RootCmd.AddCommand(git.GitCmd)
+		RootCmd.AddCommand(docker.DockerCmd)
+		RootCmd.AddCommand(protoc.ProtocCmd)
+		RootCmd.AddCommand(template.TemplateCmd)
 	}
 
 	{
-		rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+		RootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 	}
 }

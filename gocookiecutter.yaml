@@ -1,0 +1,13 @@
+app: app
+author: Coleman Word
+docker_username: colemanword
+domain: ""
+git_username: gofunct
+kubernetes: "y"
+listen: :8080
+makefile: "y"
+postgres: "y"
+serg:
+  configice: user
+summary: the default gocookiecutter configuration settings!
+transport: grpc
