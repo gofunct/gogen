@@ -16,43 +16,14 @@ package cmd
 
 import (
 	"github.com/spf13/cobra"
-	"gopkg.in/src-d/go-billy.v4/memfs"
-	"gopkg.in/src-d/go-git.v4"
-	"gopkg.in/src-d/go-git.v4/storage/memory"
-	"io"
-	"log"
-	"os"
 )
 
-const layout = "20018-01-02"
 
 func init() {
-	gitCmd.PersistentFlags().StringVarP(&url, "url", "u", "", "date [format: yyyy-mm-dd]")
+	gitCmd.PersistentFlags().StringVarP(&url, "url", "u", "", "url of target repo")
 }
 
 var gitCmd = &cobra.Command{
-	Use:   "clone",
-	Short: "Clone a github repository",
-	Run: func(cmd *cobra.Command, args []string) {
-		// Filesystem abstraction based on memory
-		fs := memfs.New()
-		// Git objects storer based on memory
-		storer := memory.NewStorage()
-		// Clones the repository into the worktree (fs) and storer all the .git
-		// content into the storer
-		_, err := git.Clone(storer, fs, &git.CloneOptions{
-			URL: url,
-		})
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		// Prints the content of the CHANGELOG file from the cloned repository
-		changelog, err := fs.Open("CHANGELOG")
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		io.Copy(os.Stdout, changelog)
-	},
+	Use:   "git",
+	Short: "git opts",
 }

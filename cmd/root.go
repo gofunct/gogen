@@ -41,8 +41,8 @@ func Execute() {
 
 func init() {
 	{
-		rootCmd.AddCommand(dockerCmd)
 		rootCmd.AddCommand(gitCmd)
+		rootCmd.AddCommand(dockerCmd)
 	}
 
 	{
