@@ -54,7 +54,7 @@ var pushCmd = &cobra.Command{
 
 			err = c.Wait()
 			if err != nil {
-				log.Fatalf("%s %s", "failed to run command", err)
+				log.Fatalf("%s %s", "Failed to add files", err)
 			}
 
 			logger.UI.Success("Files added succesfully!")
@@ -77,7 +77,7 @@ var pushCmd = &cobra.Command{
 
 			err = c.Wait()
 			if err != nil {
-				log.Fatalf("%s, %s", "failed to run command", err)
+				log.Fatalf("%s, %s", "failed to commit files", err)
 			}
 			logger.UI.Success("Files commited succesfully!")
 		}
@@ -89,16 +89,13 @@ var pushCmd = &cobra.Command{
 				log.Fatalf("%s, %s", "failed to pipe errors", err)
 			}
 
-			if err != nil {
-				log.Fatal("failed to push commit", err)
-			}
 			logger.UI.Running("Waiting for command to finish...")
 			out, _ := ioutil.ReadAll(stderr)
 			logger.UI.Output(fmt.Sprintf("%s\n", out))
 
 			err = c.Wait()
 			if err != nil {
-				log.Fatalf("%s, %s", "failed to run command", err)
+				log.Fatalf("%s, %s", "failed to push files", err)
 			}
 			logger.UI.Success("Files pushed finished succesfully!")
 		}
