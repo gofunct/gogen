@@ -72,6 +72,8 @@ github.com/gofunct/common v0.0.0-20181228222633-2f427457fe7d h1:5rPTnsYt1wi9YRJH
 github.com/gofunct/common v0.0.0-20181228222633-2f427457fe7d/go.mod h1:CbDyhXjP1nGju8Poo7aBZ5cifsgpC5++gHpy1v3qfjg=
 github.com/gofunct/common v0.0.0-20181228222738-35742438a732 h1:xKqSAYXI0fEJkclyl7I6ubOR7KeJR4o1EOLdkIO3YEU=
 github.com/gofunct/common v0.0.0-20181228222738-35742438a732/go.mod h1:CbDyhXjP1nGju8Poo7aBZ5cifsgpC5++gHpy1v3qfjg=
+github.com/gofunct/common v0.0.0-20181228223427-66cec1842d4f h1:+kMoOdgGLblsBGRSMpXF4Ww8y8Jx+GWkQajciE/nRw8=
+github.com/gofunct/common v0.0.0-20181228223427-66cec1842d4f/go.mod h1:CbDyhXjP1nGju8Poo7aBZ5cifsgpC5++gHpy1v3qfjg=
 github.com/gogo/protobuf v1.1.1 h1:72R+M5VuhED/KujmZVcIquuo8mBgX4oVda//DQb3PXo=
 github.com/gogo/protobuf v1.1.1/go.mod h1:r8qH/GZQm5c6nD/R0oafs1akxWv10x8SbQlK7atdtwQ=
 github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b h1:VKtxabqXZkF25pY9ekfRL6a582T4P37/31XEstQ5p58=

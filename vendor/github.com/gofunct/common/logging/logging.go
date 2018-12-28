@@ -24,9 +24,9 @@ var prefix = &wlog.PrefixUI{
 	SuccessPrefix:  emoji.Sprint(":white_check_mark:"),
 	InfoPrefix:     emoji.Sprint(":wave:"),
 	ErrorPrefix:    emoji.Sprint(":x:"),
-	WarnPrefix:     emoji.Sprint(":warning:"),
-	RunningPrefix:  emoji.Sprint(":zap:"),
-	AskPrefix:      emoji.Sprint(":interrobang:"),
+	WarnPrefix:     emoji.Sprint(":grimacing:"),
+	RunningPrefix:  emoji.Sprint(":fire:"),
+	AskPrefix:      emoji.Sprint(":question:"),
 	UI:            ui,
 }
 
