@@ -16,19 +16,14 @@ package cmd
 
 import (
 	"fmt"
-	"os"
-
 	"github.com/spf13/cobra"
 	"go.uber.org/zap"
-)
-
-const (
-	cfgFile string = "gocookiecutter.yaml"
+	"os"
 )
 
 var (
-	home string
 	logger, _ = zap.NewDevelopment()
+	url       string
 )
 
 // rootCmd represents the base command when called without any subcommands
@@ -46,7 +41,7 @@ func Execute() {
 
 func init() {
 	{
-		rootCmd.AddCommand(upCmd)
+		rootCmd.AddCommand(dockerCmd)
 		rootCmd.AddCommand(gitCmd)
 	}
 
