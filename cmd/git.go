@@ -20,10 +20,12 @@ import (
 
 var (
 	remoteUrl			string
+	commitMsg 			string
 )
 
 func init() {
 	gitCmd.PersistentFlags().StringVarP(&remoteUrl, "url", "u", "", "remote url of target repo")
+	gitCmd.PersistentFlags().StringVar(&commitMsg, "msg", "default msg",  "remote url of target repo")
 }
 
 var gitCmd = &cobra.Command{

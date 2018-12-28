@@ -19,11 +19,13 @@ import (
 	"github.com/spf13/cobra"
 	"go.uber.org/zap"
 	"os"
+	"sync"
 )
 
 var (
 	logger, _ = zap.NewDevelopment()
 	goPath = os.Getenv("GOPATH")
+	wg sync.WaitGroup
 )
 
 // rootCmd represents the base command when called without any subcommands

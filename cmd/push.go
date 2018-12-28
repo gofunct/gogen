@@ -21,24 +21,60 @@
 package cmd
 
 import (
+	"fmt"
 	"github.com/spf13/cobra"
 	"go.uber.org/zap"
+	"io/ioutil"
+	"log"
 	"os/exec"
 )
 
 func init() {
-	gitCmd.AddCommand(cloneCmd)
+	gitCmd.AddCommand(pushCmd)
 }
 
-// cloneCmd represents the clone command
-var cloneCmd = &cobra.Command{
-	Use:   "clone",
-	Short: "clone a git repo",
+// pushCmd represents the push command
+var pushCmd = &cobra.Command{
+	Use:   "push",
+	Short: "A brief description of your command",
 	Run: func(cmd *cobra.Command, args []string) {
-		c := exec.Command("git", "clone", "--progress", remoteUrl)
-		err := c.Run()
-		if err != nil {
-			logger.Fatal("failed to clone repository", zap.Error(err))
+		{
+			c := exec.Command("git", "add", ".")
+			stderr, err := c.StderrPipe()
+			if err != nil {
+				logger.Fatal("failed to stage files", zap.Error(err))
+			}
+
+			err = c.Start()
+			if err != nil {
+				logger.Fatal("failed to stage files", zap.Error(err))
+			}
+			logger.Info("Waiting for command to finish...")
+			out, _ := ioutil.ReadAll(stderr)
+			fmt.Printf("%s\n", out)
+
+			err = c.Wait()
+			log.Printf("Command finished with error: %v", err)
 		}
+
+		{
+			c := exec.Command("git", "commit", "-m", commitMsg)
+			stderr, err := c.StderrPipe()
+			if err != nil {
+				logger.Fatal("failed to stage files", zap.Error(err))
+			}
+
+			err = c.Start()
+			if err != nil {
+				logger.Fatal("failed to stage files", zap.Error(err))
+			}
+			logger.Info("Waiting for command to finish...")
+			out, _ := ioutil.ReadAll(stderr)
+			fmt.Printf("%s\n", out)
+
+			err = c.Wait()
+			log.Printf("Command finished with error: %v", err)
+		}
+
 	},
 }
