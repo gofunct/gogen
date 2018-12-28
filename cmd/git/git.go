@@ -16,16 +16,21 @@ package git
 
 import (
 	"github.com/spf13/cobra"
+	"log"
 	"os"
+	"github.com/gofunct/common/logging"
+	kitlog "github.com/go-kit/kit/log"
 )
 
 var (
 	goPath = os.Getenv("GOPATH")
 	remoteUrl			string
 	commitMsg 			string
+	logger = logging.NewLogger()
 )
 
 func init() {
+	log.SetOutput(kitlog.NewStdlibAdapter(logger.KitLog))
 	GitCmd.PersistentFlags().StringVarP(&remoteUrl, "url", "u", "", "remote url of target repo")
 	GitCmd.PersistentFlags().StringVar(&commitMsg, "msg", "default msg",  "remote url of target repo")
 }

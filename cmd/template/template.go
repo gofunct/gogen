@@ -22,14 +22,15 @@ package template
 
 import (
 	"github.com/gofunct/common/logging"
-	"github.com/prometheus/common/log"
+	"log"
 	"github.com/gofunct/gocookiecutter/gocookie"
 	"github.com/spf13/cobra"
 	"os"
+	kitlog "github.com/go-kit/kit/log"
 )
 
 var (
-	logger = logging.NewLogger(os.Stdout)
+	logger = logging.NewLogger()
 	goPath = os.Getenv("GOPATH")
 	destPath string
 	cookie *gocookie.GoCookieConfig
@@ -41,6 +42,7 @@ func init() {
 	if err != nil {
 		log.Fatal("failed to inititalize gocookie config", err)
 	}
+	log.SetOutput(kitlog.NewStdlibAdapter(logger.KitLog))
 	TemplateCmd.AddCommand(genCmd)
 	TemplateCmd.AddCommand(funcCmd)
 	TemplateCmd.PersistentFlags().StringVarP(&destPath, "dest-path", "d", ".", "specify the path to the output directory")

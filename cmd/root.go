@@ -22,11 +22,13 @@ import (
 	"github.com/gofunct/gocookiecutter/cmd/protoc"
 	"github.com/gofunct/gocookiecutter/cmd/template"
 	"github.com/spf13/cobra"
+	"log"
 	"os"
+	kitlog "github.com/go-kit/kit/log"
 )
 
 var (
-	logger = logging.NewLogger(os.Stdout)
+	logger = logging.NewLogger()
 	goPath = os.Getenv("GOPATH")
 )
 
@@ -44,6 +46,7 @@ func Execute() {
 }
 
 func init() {
+	log.SetOutput(kitlog.NewStdlibAdapter(logger.KitLog))
 	{
 		RootCmd.AddCommand(git.GitCmd)
 		RootCmd.AddCommand(docker.DockerCmd)

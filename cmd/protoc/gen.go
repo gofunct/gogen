@@ -22,7 +22,7 @@ package protoc
 
 import (
 	"fmt"
-	"go.uber.org/zap"
+	"log"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -41,7 +41,7 @@ var genCmd = &cobra.Command{
 	Short: "Generate protobug files",
 	Run: func(cmd *cobra.Command, args []string) {
 		if err := filepath.Walk(protoDir, walk()); err != nil {
-			logger.Fatal("failed to generate protobufs", zap.Error(err))
+			log.Fatal("failed to generate protobufs", err)
 		}
 	},
 }

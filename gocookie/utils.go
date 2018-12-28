@@ -1,9 +1,9 @@
 package gocookie
 
 import (
-	"fmt"
 	"github.com/Masterminds/sprig"
 	"strings"
+	"log"
 )
 
 func List() {
@@ -12,5 +12,5 @@ func List() {
 	for k := range funcs {
 		list = append(list, k)
 	}
-	fmt.Printf("(%s)", strings.Join(list, "|"))
+	log.Printf("(%s)", strings.Join(list, "|"))
 }

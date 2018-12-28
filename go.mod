@@ -7,9 +7,13 @@ require (
 	github.com/alecthomas/template v0.0.0-20160405071501-a0175ee3bccc // indirect
 	github.com/alecthomas/units v0.0.0-20151022065526-2efee857e7cf // indirect
 	github.com/aokoli/goutils v1.0.1 // indirect
+	github.com/daviddengcn/go-colortext v0.0.0-20180409174941-186a3d44e920 // indirect
+	github.com/dixonwille/wlog v2.0.0+incompatible // indirect
 	github.com/fsouza/go-dockerclient v1.3.1
 	github.com/ghodss/yaml v1.0.0 // indirect
-	github.com/gofunct/common v0.0.0-20181228065614-780e594d0ce9
+	github.com/go-kit/kit v0.8.0
+	github.com/go-logfmt/logfmt v0.4.0 // indirect
+	github.com/gofunct/common v0.0.0-20181228220816-6bd4fcdb8bf2
 	github.com/golang/protobuf v1.2.0
 	github.com/google/uuid v1.1.0 // indirect
 	github.com/grpc-ecosystem/grpc-gateway v1.6.3
@@ -17,7 +21,7 @@ require (
 	github.com/imdario/mergo v0.3.6 // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/kr/pretty v0.1.0 // indirect
-	github.com/prometheus/common v0.0.0-20181218105931-67670fe90761
+	github.com/prometheus/common v0.0.0-20181218105931-67670fe90761 // indirect
 	github.com/spf13/afero v1.2.0
 	github.com/spf13/cobra v0.0.3
 	github.com/spf13/viper v1.3.1

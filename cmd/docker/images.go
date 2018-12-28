@@ -21,10 +21,10 @@
 package docker
 
 import (
-	"fmt"
 	"github.com/fsouza/go-dockerclient"
 
 	"github.com/spf13/cobra"
+	"log"
 )
 
 func init() {
@@ -38,19 +38,19 @@ var imagesCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		client, err := docker.NewClient(dockerEndpoint)
 		if err != nil {
-			panic(err)
+			log.Fatalf("%s %s", "failed to create docker client", err)
 		}
-		imgs, err := client.ListImages(docker.ListImagesOptions{All: false})
+		imgs, err := client.ListImages(docker.ListImagesOptions{All: true})
 		if err != nil {
-			panic(err)
+			log.Fatalf("%s %s", "failed to list docker images", err)
 		}
 		for _, img := range imgs {
-			fmt.Println("ID: ", img.ID)
-			fmt.Println("RepoTags: ", img.RepoTags)
-			fmt.Println("Created: ", img.Created)
-			fmt.Println("Size: ", img.Size)
-			fmt.Println("VirtualSize: ", img.VirtualSize)
-			fmt.Println("ParentId: ", img.ParentID)
+			log.Print("ID: ", img.ID)
+			log.Print("RepoTags: ", img.ID)
+			log.Print("Created: ", img.Created)
+			log.Print("Size: ", img.Size)
+			log.Print("VirtualSize: ", img.VirtualSize)
+			log.Print("ParentId: ", img.ParentID)
 		}
 	},
 }

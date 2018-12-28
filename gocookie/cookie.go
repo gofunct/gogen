@@ -1,25 +1,29 @@
 package gocookie
 
 import (
-	"bytes"
 	"github.com/Masterminds/sprig"
 	"github.com/gofunct/common/errors"
 	"github.com/gofunct/common/logging"
 	"github.com/spf13/afero"
 	"github.com/spf13/viper"
+	"log"
 	"os"
 	"text/template"
+	kitlog "github.com/go-kit/kit/log"
 )
 
 var (
-	logger = logging.NewLogger(os.Stderr)
+	logger = logging.NewLogger()
 )
+
+func init() {
+	 log.SetOutput(kitlog.NewStdlibAdapter(logger.KitLog))
+ }
 
 type GoCookieConfig struct {
 	Config   *viper.Viper
 	Data     map[string]interface{}
 	Os       *afero.OsFs
-	Buffer   *bytes.Buffer
 	Template *template.Template
 }
 
@@ -29,7 +33,6 @@ func NewGoCookieConfig() (*GoCookieConfig, error) {
 		Config: viper.New(),
 		Data:   make(map[string]interface{}),
 		Os:     &afero.OsFs{},
-		Buffer: new(bytes.Buffer),
 	}
 
 		g.Config.SetConfigName("gocookiecutter")
@@ -64,13 +67,13 @@ func NewGoCookieConfig() (*GoCookieConfig, error) {
 
 	// If a config file is found, read it in.
 	if err = g.Config.ReadInConfig(); err != nil {
-		logger.Debug("failed to read config file, writing defaults...")
+		log.Printf("%s, %s", "failed to read config file, writing defaults...", err)
 		if err = g.Config.WriteConfigAs("gocookiecutter.yaml"); err != nil {
 			return nil, err
 		}
 
 	} else {
-		logger.Debug("Using config file-->", g.Config.ConfigFileUsed())
+		log.Printf("%s, %s", "Using config file:", g.Config.ConfigFileUsed())
 		if err = g.Config.WriteConfig(); err != nil {
 			return nil, err
 		}

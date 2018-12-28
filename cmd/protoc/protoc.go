@@ -23,16 +23,19 @@ package protoc
 import (
 	"github.com/gofunct/common/logging"
 	"github.com/spf13/cobra"
+	"log"
 	"os"
+	kitlog "github.com/go-kit/kit/log"
 )
 
 var (
-	logger = logging.Base()
+	logger = logging.NewLogger()
 	goPath = os.Getenv("GOPATH")
 	protoDir string
 )
 
 func init() {
+	log.SetOutput(kitlog.NewStdlibAdapter(logger.KitLog))
 	ProtocCmd.PersistentFlags().StringVarP(&protoDir, "protodir", "p", "api", "directory containing protobuf files")
 }
 

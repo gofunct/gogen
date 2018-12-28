@@ -23,10 +23,9 @@ package git
 import (
 	"fmt"
 	"github.com/spf13/cobra"
-	"go.uber.org/zap"
 	"io/ioutil"
+	"log"
 	"os/exec"
-	"github.com/gofunct/common/logging"
 )
 
 func init() {
@@ -42,57 +41,66 @@ var pushCmd = &cobra.Command{
 			c := exec.Command("git", "add", ".")
 			stderr, err := c.StderrPipe()
 			if err != nil {
-				logging.Fatal("failed to stage files", zap.Error(err))
+				log.Fatalf("%s %s", "failed to stage files", err)
 			}
 
 			err = c.Start()
 			if err != nil {
-				logging.Fatal("failed to stage files", zap.Error(err))
+				log.Fatal("%s %s", "failed to stage files", err)
 			}
-			logging.Debug("Waiting for command to finish...")
+			logger.UI.Running("Waiting for command to finish...")
 			out, _ := ioutil.ReadAll(stderr)
-			fmt.Printf("%s\n", out)
+			logger.UI.Output(fmt.Sprintf("%s\n", out))
 
 			err = c.Wait()
-			logging.Debug("Command finished with error: %v", err)
+			if err != nil {
+				log.Fatalf("%s %s", "failed to run command", err)
+			}
+
+			logger.UI.Success("Command finished succesfully!")
 		}
 
 		{
 			c := exec.Command("git", "commit", "-m", commitMsg)
 			stderr, err := c.StderrPipe()
 			if err != nil {
-				logging.Fatal("failed to stage files", zap.Error(err))
+				log.Fatal("failed to stage files", err)
 			}
 
 			err = c.Start()
 			if err != nil {
-				logging.Fatal("failed to stage files", zap.Error(err))
+				log.Fatal("failed to stage files", err)
 			}
-			logging.Debug("Waiting for command to finish...")
+			logger.UI.Running("Waiting for command to finish...")
 			out, _ := ioutil.ReadAll(stderr)
-			fmt.Printf("%s\n", out)
+			logger.UI.Output(fmt.Sprintf("%s\n", out))
 
 			err = c.Wait()
-			logging.Debug("Command finished with error: %v", err)
+			if err != nil {
+				log.Fatalf("%s, %s", "failed to run command", err)
+			}
+			logger.UI.Success("Command finished succesfully!")
 		}
 
 		{
 			c := exec.Command("git", "push", "origin", "master")
 			stderr, err := c.StderrPipe()
 			if err != nil {
-				logging.Fatal("failed to stage files", zap.Error(err))
+				log.Fatalf("%s, %s", "failed to stage files", err)
 			}
 
-			err = c.Start()
 			if err != nil {
-				logging.Fatal("failed to stage files", zap.Error(err))
+				log.Fatal("failed to stage files", err)
 			}
-			logging.Debug("Waiting for command to finish...")
+			logger.UI.Running("Waiting for command to finish...")
 			out, _ := ioutil.ReadAll(stderr)
-			fmt.Printf("%s\n", out)
+			logger.UI.Output(fmt.Sprintf("%s\n", out))
 
 			err = c.Wait()
-			logging.Debug("Command finished with error: %v", err)
+			if err != nil {
+				log.Fatalf("%s, %s", "failed to run command", err)
+			}
+			logger.UI.Success("Command finished succesfully!")
 		}
 
 	},

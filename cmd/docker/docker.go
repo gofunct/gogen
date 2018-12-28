@@ -22,7 +22,7 @@ import (
 
 var (
 	dockerEndpoint string
-	logger = logging.Base()
+	logger = logging.NewLogger()
 	goPath = os.Getenv("GOPATH")
 )
 
