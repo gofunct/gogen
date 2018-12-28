@@ -21,7 +21,7 @@ import (
 )
 
 var (
-	logger = logging.NewLogger(os.Stdout)
+	logger = logging.NewLogger(os.Stderr)
 	goPath = os.Getenv("GOPATH")
 	remoteUrl			string
 	commitMsg 			string
