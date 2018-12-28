@@ -39,7 +39,7 @@ type Logger struct{
 func NewLogger() *Logger {
 	logger := kitlog.NewJSONLogger(kitlog.NewSyncWriter(os.Stdout))
 	l := &Logger{
-		UI: ui,
+		UI: prefix,
 		KitLog: logger,
 	}
 
