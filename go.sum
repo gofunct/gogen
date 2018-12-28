@@ -68,6 +68,8 @@ github.com/gofunct/common v0.0.0-20181228220741-482630d80f23 h1:0trzEdTi0AOeB4px
 github.com/gofunct/common v0.0.0-20181228220741-482630d80f23/go.mod h1:CbDyhXjP1nGju8Poo7aBZ5cifsgpC5++gHpy1v3qfjg=
 github.com/gofunct/common v0.0.0-20181228220816-6bd4fcdb8bf2 h1:4m4pYV1BAVgnZ0GH3liSlOt2lrnHh+YfRDOjJpFxZ+c=
 github.com/gofunct/common v0.0.0-20181228220816-6bd4fcdb8bf2/go.mod h1:CbDyhXjP1nGju8Poo7aBZ5cifsgpC5++gHpy1v3qfjg=
+github.com/gofunct/common v0.0.0-20181228222633-2f427457fe7d h1:5rPTnsYt1wi9YRJHzVd5Axg0RRoCq6IH9zHbwxjz3PU=
+github.com/gofunct/common v0.0.0-20181228222633-2f427457fe7d/go.mod h1:CbDyhXjP1nGju8Poo7aBZ5cifsgpC5++gHpy1v3qfjg=
 github.com/gogo/protobuf v1.1.1 h1:72R+M5VuhED/KujmZVcIquuo8mBgX4oVda//DQb3PXo=
 github.com/gogo/protobuf v1.1.1/go.mod h1:r8qH/GZQm5c6nD/R0oafs1akxWv10x8SbQlK7atdtwQ=
 github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b h1:VKtxabqXZkF25pY9ekfRL6a582T4P37/31XEstQ5p58=
@@ -102,8 +104,12 @@ github.com/kr/pretty v0.1.0/go.mod h1:dAy3ld7l9f0ibDNOQOHHMYYIIbhfbHSm3C4ZsoJORN
 github.com/kr/pty v1.1.1/go.mod h1:pFQYn66WHrOpPYNljwOMqo10TkYh1fy3cYio2l3bCsQ=
 github.com/kr/text v0.1.0 h1:45sCR5RtlFHMR4UwH9sdQ5TC8v0qDQCHnXt+kaKSTVE=
 github.com/kr/text v0.1.0/go.mod h1:4Jbv+DJW3UT/LiOwJeYQe1efqtUx/iVham/4vfdArNI=
+github.com/kyokomi/emoji v2.0.0+incompatible h1:ftqSD1PzBkSr3I4/0ZZ7Cluaxv6sNi8CkhYE56Son6A=
+github.com/kyokomi/emoji v2.0.0+incompatible/go.mod h1:mZ6aGCD7yk8j6QY6KICwnZ2pxoszVseX1DNoGtU2tBA=
 github.com/magiconair/properties v1.8.0 h1:LLgXmsheXeRoUOBOjtwPQCWIYqM/LU1ayDtDePerRcY=
 github.com/magiconair/properties v1.8.0/go.mod h1:PppfXfuXeibc/6YijjN8zIbojt8czPbwD3XqdrwzmxQ=
+github.com/mattn/go-isatty v0.0.4 h1:bnP0vzxcAdeI1zdubAl5PjU6zsERjGZb7raWodagDYs=
+github.com/mattn/go-isatty v0.0.4/go.mod h1:M+lRXTBqGeGNdLjl/ufCoiOlB5xdOkqRJdNxMWT7Zi4=
 github.com/mitchellh/mapstructure v1.1.2 h1:fmNYVwqnSfB9mZU6OS2O6GsXM+wcskZDuKQzvN1EDeE=
 github.com/mitchellh/mapstructure v1.1.2/go.mod h1:FVVH3fgwuzCH5S8UJGiWEs2h04kUh9fWfEaFds41c1Y=
 github.com/onsi/ginkgo v1.6.0 h1:Ix8l273rp3QzYgXSR+c8d1fTG7UPgYkOSELPhiY/YGw=
