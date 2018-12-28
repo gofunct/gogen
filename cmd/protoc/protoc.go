@@ -35,6 +35,7 @@ var (
 )
 
 func init() {
+	logger.AddColor()
 	log.SetOutput(kitlog.NewStdlibAdapter(logger.KitLog))
 	ProtocCmd.PersistentFlags().StringVarP(&protoDir, "protodir", "p", "api", "directory containing protobuf files")
 }

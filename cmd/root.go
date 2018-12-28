@@ -46,6 +46,7 @@ func Execute() {
 }
 
 func init() {
+	logger.AddColor()
 	log.SetOutput(kitlog.NewStdlibAdapter(logger.KitLog))
 	{
 		RootCmd.AddCommand(git.GitCmd)

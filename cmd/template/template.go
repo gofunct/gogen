@@ -37,6 +37,7 @@ var (
 )
 
 func init() {
+	logger.AddColor()
 	var err error
 	cookie, err = gocookie.NewGoCookieConfig()
 	if err != nil {

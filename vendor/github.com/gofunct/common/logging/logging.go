@@ -48,8 +48,6 @@ func NewLogger() *Logger {
 }
 
 
-func (l *Logger) AddColor(optionColor, questionColor, responseColor, errorColor wlog.Color) {
-	if !noColor {
-		l.UI = wlog.AddColor(questionColor, errorColor, wlog.None, wlog.None, optionColor, responseColor, wlog.None, wlog.None, wlog.None, l.UI)
-	}
+func (l *Logger) AddColor() {
+		l.UI = wlog.AddColor(wlog.Green, wlog.Red, wlog.BrightBlue, wlog.Blue, wlog.Yellow, wlog.BrightMagenta, wlog.Yellow, wlog.BrightGreen, wlog.BrightRed, l.UI)
 }

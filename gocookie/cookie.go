@@ -17,7 +17,8 @@ var (
 )
 
 func init() {
-	 log.SetOutput(kitlog.NewStdlibAdapter(logger.KitLog))
+	logger.AddColor()
+	log.SetOutput(kitlog.NewStdlibAdapter(logger.KitLog))
  }
 
 type GoCookieConfig struct {

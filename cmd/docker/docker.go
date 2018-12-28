@@ -27,6 +27,7 @@ var (
 )
 
 func init() {
+	logger.AddColor()
 	DockerCmd.PersistentFlags().StringVarP(&dockerEndpoint, "endpoint", "e", "unix:///var/run/docker.sock", "docker endpoint")
 }
 

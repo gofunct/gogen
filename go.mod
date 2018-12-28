@@ -13,7 +13,7 @@ require (
 	github.com/ghodss/yaml v1.0.0 // indirect
 	github.com/go-kit/kit v0.8.0
 	github.com/go-logfmt/logfmt v0.4.0 // indirect
-	github.com/gofunct/common v0.0.0-20181228223427-66cec1842d4f
+	github.com/gofunct/common v0.0.0-20181228225457-e1e7edc32515
 	github.com/golang/protobuf v1.2.0
 	github.com/google/uuid v1.1.0 // indirect
 	github.com/grpc-ecosystem/grpc-gateway v1.6.3

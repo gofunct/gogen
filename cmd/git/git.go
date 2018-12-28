@@ -30,9 +30,10 @@ var (
 )
 
 func init() {
+	logger.AddColor()
 	log.SetOutput(kitlog.NewStdlibAdapter(logger.KitLog))
 	GitCmd.PersistentFlags().StringVarP(&remoteUrl, "url", "u", "", "remote url of target repo")
-	GitCmd.PersistentFlags().StringVar(&commitMsg, "msg", "default msg",  "remote url of target repo")
+	GitCmd.PersistentFlags().StringVarP(&commitMsg, "msg", "m", "default msg",  "remote url of target repo")
 }
 
 var GitCmd = &cobra.Command{
