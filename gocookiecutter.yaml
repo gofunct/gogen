@@ -7,7 +7,6 @@ kubernetes: "y"
 listen: :8080
 makefile: "y"
 postgres: "y"
-serg:
-  configice: user
+service: user
 summary: the default gocookiecutter configuration settings!
 transport: grpc

@@ -26,7 +26,7 @@ import (
 )
 
 var (
-	logger = logging.Base()
+	logger = logging.NewLogger(os.Stdout)
 	goPath = os.Getenv("GOPATH")
 )
 

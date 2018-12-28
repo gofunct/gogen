@@ -1,4 +1,4 @@
-package fmap
+package gocookie
 
 import (
 	"fmt"

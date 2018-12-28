@@ -1,7 +1,7 @@
 package template
 
 import (
-	"github.com/gofunct/gocookiecutter/fmap"
+	"github.com/gofunct/gocookiecutter/gocookie"
 	"github.com/spf13/cobra"
 )
 
@@ -10,7 +10,7 @@ var funcCmd = &cobra.Command{
 	Use:   "func",
 	Short: "list sprig template functions",
 	Run: func(c *cobra.Command, args []string) {
-		fmap.List()
+		gocookie.List()
 	},
 }
 

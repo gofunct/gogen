@@ -21,9 +21,9 @@
 package protoc
 
 import (
+	"github.com/gofunct/common/logging"
 	"github.com/spf13/cobra"
 	"os"
-	"github.com/gofunct/common/logging"
 )
 
 var (

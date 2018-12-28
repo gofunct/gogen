@@ -21,22 +21,28 @@
 package template
 
 import (
-	"github.com/spf13/cobra"
 	"github.com/gofunct/common/logging"
+	"github.com/prometheus/common/log"
+	"github.com/gofunct/gocookiecutter/gocookie"
+	"github.com/spf13/cobra"
 	"os"
 )
 
 var (
-	logger = logging.Base()
+	logger = logging.NewLogger(os.Stdout)
 	goPath = os.Getenv("GOPATH")
-	tmplPath string
 	destPath string
+	cookie *gocookie.GoCookieConfig
 )
 
 func init() {
+	var err error
+	cookie, err = gocookie.NewGoCookieConfig()
+	if err != nil {
+		log.Fatal("failed to inititalize gocookie config", err)
+	}
 	TemplateCmd.AddCommand(genCmd)
 	TemplateCmd.AddCommand(funcCmd)
-	TemplateCmd.PersistentFlags().StringVarP(&tmplPath, "tmpl-path", "t", "templates", "specify the path to the directory containing your templates")
 	TemplateCmd.PersistentFlags().StringVarP(&destPath, "dest-path", "d", ".", "specify the path to the output directory")
 }
 
