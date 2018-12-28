@@ -1,4 +1,4 @@
-// Copyright © 2018 NAME HERE <EMAIL ADDRESS>
+// Copyright © 2018 Coleman Word <coleman.word@gofunct.com>
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,9 +18,8 @@ import (
 	"fmt"
 	"os"
 
-	homedir "github.com/mitchellh/go-homedir"
 	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
+	"go.uber.org/zap"
 )
 
 const (
@@ -29,6 +28,7 @@ const (
 
 var (
 	home string
+	logger, _ = zap.NewDevelopment()
 )
 
 // rootCmd represents the base command when called without any subcommands
@@ -46,32 +46,11 @@ func Execute() {
 
 func init() {
 	{
-		var err error
-		home, err = homedir.Dir()
-		if err != nil {
-			fmt.Println(err)
-			os.Exit(1)
-		}
-	}
-
-	{
-		rootCmd.AddCommand(cloneCmd)
-
+		rootCmd.AddCommand(upCmd)
+		rootCmd.AddCommand(gitCmd)
 	}
 
 	{
 		rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-	}
-
-	{
-		viper.SetConfigName("gocookiecutter")
-		viper.SetConfigFile(cfgFile)
-		viper.AddConfigPath(home)
-		viper.AutomaticEnv() // read in environment variables that match
-	}
-
-	// If a config file is found, read it in.
-	if err := viper.ReadInConfig(); err == nil {
-		fmt.Println("Using config file:", viper.ConfigFileUsed())
 	}
 }

@@ -1,4 +1,4 @@
-// Copyright © 2018 NAME HERE <EMAIL ADDRESS>
+// Copyright © 2018 Coleman Word <coleman.word@gofunct.com>
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,34 +18,33 @@ import (
 	"fmt"
 
 	"github.com/spf13/cobra"
-	_ "github.com/fsouza/go-dockerclient"
+	"github.com/fsouza/go-dockerclient"
 )
+
+func init() {}
 
 // upCmd represents the up command
 var upCmd = &cobra.Command{
 	Use:   "up",
 	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("up called")
+		endpoint := "unix:///var/run/docker.sock"
+		client, err := docker.NewClient(endpoint)
+		if err != nil {
+			panic(err)
+		}
+		imgs, err := client.ListImages(docker.ListImagesOptions{All: false})
+		if err != nil {
+			panic(err)
+		}
+		for _, img := range imgs {
+			fmt.Println("ID: ", img.ID)
+			fmt.Println("RepoTags: ", img.RepoTags)
+			fmt.Println("Created: ", img.Created)
+			fmt.Println("Size: ", img.Size)
+			fmt.Println("VirtualSize: ", img.VirtualSize)
+			fmt.Println("ParentId: ", img.ParentID)
+		}
 	},
 }
 
-func init() {
-	rootCmd.AddCommand(upCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// upCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// upCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-}
