@@ -25,7 +25,6 @@ import (
 	"github.com/spf13/cobra"
 	"go.uber.org/zap"
 	"io/ioutil"
-	"log"
 	"os/exec"
 )
 
@@ -92,7 +91,7 @@ var pushCmd = &cobra.Command{
 			fmt.Printf("%s\n", out)
 
 			err = c.Wait()
-			log.Printf("Command finished with error: %v", err)
+			logger.Debug("Command finished with error: %v", err)
 		}
 
 	},
