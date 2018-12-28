@@ -29,13 +29,13 @@ import (
 )
 
 func init() {
-	GitCmd.AddCommand(pushCmd)
+	GitCmd.AddCommand(saveCmd)
 }
 
 // pushCmd represents the push command
-var pushCmd = &cobra.Command{
-	Use:   "push",
-	Short: "A brief description of your command",
+var saveCmd = &cobra.Command{
+	Use:   "save",
+	Short: "Save all files in current project",
 	Run: func(cmd *cobra.Command, args []string) {
 		{
 			c := exec.Command("git", "add", ".")
@@ -80,24 +80,6 @@ var pushCmd = &cobra.Command{
 				log.Fatalf("%s, %s", "failed to commit files", err)
 			}
 			logger.UI.Success("Files commited succesfully!")
-		}
-
-		{
-			c := exec.Command("git", "push", "origin", "master")
-			stderr, err := c.StderrPipe()
-			if err != nil {
-				log.Fatalf("%s, %s", "failed to pipe errors", err)
-			}
-
-			logger.UI.Running("Waiting for command to finish...")
-			out, _ := ioutil.ReadAll(stderr)
-			fmt.Printf("%s\n", out)
-
-			err = c.Wait()
-			if err != nil {
-				log.Fatalf("%s, %s", "failed to push files", err)
-			}
-			logger.UI.Success("Files pushed finished succesfully!")
 		}
 
 	},
