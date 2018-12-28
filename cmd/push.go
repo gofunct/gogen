@@ -76,5 +76,24 @@ var pushCmd = &cobra.Command{
 			log.Printf("Command finished with error: %v", err)
 		}
 
+		{
+			c := exec.Command("git", "push", "origin master")
+			stderr, err := c.StderrPipe()
+			if err != nil {
+				logger.Fatal("failed to stage files", zap.Error(err))
+			}
+
+			err = c.Start()
+			if err != nil {
+				logger.Fatal("failed to stage files", zap.Error(err))
+			}
+			logger.Info("Waiting for command to finish...")
+			out, _ := ioutil.ReadAll(stderr)
+			fmt.Printf("%s\n", out)
+
+			err = c.Wait()
+			log.Printf("Command finished with error: %v", err)
+		}
+
 	},
 }
