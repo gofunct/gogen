@@ -21,6 +21,7 @@ import (
 	"github.com/gofunct/gocookiecutter/cmd/git"
 	"github.com/gofunct/gocookiecutter/cmd/protoc"
 	"github.com/gofunct/gocookiecutter/cmd/template"
+	ccobra 	"github.com/gofunct/gocookiecutter/cmd/cobra"
 	"github.com/spf13/cobra"
 	"log"
 	"os"
@@ -53,6 +54,7 @@ func init() {
 		RootCmd.AddCommand(docker.DockerCmd)
 		RootCmd.AddCommand(protoc.ProtocCmd)
 		RootCmd.AddCommand(template.TemplateCmd)
+		RootCmd.AddCommand(ccobra.CobraCmd)
 	}
 
 	{
