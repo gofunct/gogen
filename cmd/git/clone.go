@@ -24,6 +24,7 @@ import (
 	"github.com/spf13/cobra"
 	"go.uber.org/zap"
 	"os/exec"
+	"github.com/gofunct/common/logging"
 )
 
 func init() {
@@ -38,7 +39,7 @@ var cloneCmd = &cobra.Command{
 		c := exec.Command("git", "clone", "--progress", remoteUrl)
 		err := c.Run()
 		if err != nil {
-			logger.Fatal("failed to clone repository", zap.Error(err))
+			logging.Fatal("failed to clone repository", zap.Error(err))
 		}
 	},
 }

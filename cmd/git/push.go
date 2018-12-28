@@ -26,6 +26,7 @@ import (
 	"go.uber.org/zap"
 	"io/ioutil"
 	"os/exec"
+	"github.com/gofunct/common/logging"
 )
 
 func init() {
@@ -41,57 +42,57 @@ var pushCmd = &cobra.Command{
 			c := exec.Command("git", "add", ".")
 			stderr, err := c.StderrPipe()
 			if err != nil {
-				logger.Fatal("failed to stage files", zap.Error(err))
+				logging.Fatal("failed to stage files", zap.Error(err))
 			}
 
 			err = c.Start()
 			if err != nil {
-				logger.Fatal("failed to stage files", zap.Error(err))
+				logging.Fatal("failed to stage files", zap.Error(err))
 			}
-			logger.Debug("Waiting for command to finish...")
+			logging.Debug("Waiting for command to finish...")
 			out, _ := ioutil.ReadAll(stderr)
 			fmt.Printf("%s\n", out)
 
 			err = c.Wait()
-			logger.Debug("Command finished with error: %v", err)
+			logging.Debug("Command finished with error: %v", err)
 		}
 
 		{
 			c := exec.Command("git", "commit", "-m", commitMsg)
 			stderr, err := c.StderrPipe()
 			if err != nil {
-				logger.Fatal("failed to stage files", zap.Error(err))
+				logging.Fatal("failed to stage files", zap.Error(err))
 			}
 
 			err = c.Start()
 			if err != nil {
-				logger.Fatal("failed to stage files", zap.Error(err))
+				logging.Fatal("failed to stage files", zap.Error(err))
 			}
-			logger.Debug("Waiting for command to finish...")
+			logging.Debug("Waiting for command to finish...")
 			out, _ := ioutil.ReadAll(stderr)
 			fmt.Printf("%s\n", out)
 
 			err = c.Wait()
-			logger.Debug("Command finished with error: %v", err)
+			logging.Debug("Command finished with error: %v", err)
 		}
 
 		{
 			c := exec.Command("git", "push", "origin", "master")
 			stderr, err := c.StderrPipe()
 			if err != nil {
-				logger.Fatal("failed to stage files", zap.Error(err))
+				logging.Fatal("failed to stage files", zap.Error(err))
 			}
 
 			err = c.Start()
 			if err != nil {
-				logger.Fatal("failed to stage files", zap.Error(err))
+				logging.Fatal("failed to stage files", zap.Error(err))
 			}
-			logger.Debug("Waiting for command to finish...")
+			logging.Debug("Waiting for command to finish...")
 			out, _ := ioutil.ReadAll(stderr)
 			fmt.Printf("%s\n", out)
 
 			err = c.Wait()
-			logger.Debug("Command finished with error: %v", err)
+			logging.Debug("Command finished with error: %v", err)
 		}
 
 	},
