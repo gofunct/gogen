@@ -57,7 +57,7 @@ var pushCmd = &cobra.Command{
 				log.Fatalf("%s %s", "failed to run command", err)
 			}
 
-			logger.UI.Success("Command finished succesfully!")
+			logger.UI.Success("Files added succesfully!")
 		}
 
 		{
@@ -79,7 +79,7 @@ var pushCmd = &cobra.Command{
 			if err != nil {
 				log.Fatalf("%s, %s", "failed to run command", err)
 			}
-			logger.UI.Success("Command finished succesfully!")
+			logger.UI.Success("Files commited succesfully!")
 		}
 
 		{
@@ -100,7 +100,7 @@ var pushCmd = &cobra.Command{
 			if err != nil {
 				log.Fatalf("%s, %s", "failed to run command", err)
 			}
-			logger.UI.Success("Command finished succesfully!")
+			logger.UI.Success("Files pushed finished succesfully!")
 		}
 
 	},
