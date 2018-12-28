@@ -50,7 +50,7 @@ var pushCmd = &cobra.Command{
 			}
 			logger.UI.Running("Waiting for command to finish...")
 			out, _ := ioutil.ReadAll(stderr)
-			logger.UI.Output(fmt.Sprintf("%s\n", out))
+			fmt.Printf("%s\n", out)
 
 			err = c.Wait()
 			if err != nil {
@@ -73,7 +73,7 @@ var pushCmd = &cobra.Command{
 			}
 			logger.UI.Running("Waiting for command to finish...")
 			out, _ := ioutil.ReadAll(stderr)
-			logger.UI.Output(fmt.Sprintf("%s\n", out))
+			fmt.Printf("%s\n", out)
 
 			err = c.Wait()
 			if err != nil {
@@ -91,7 +91,7 @@ var pushCmd = &cobra.Command{
 
 			logger.UI.Running("Waiting for command to finish...")
 			out, _ := ioutil.ReadAll(stderr)
-			logger.UI.Output(fmt.Sprintf("%s\n", out))
+			fmt.Printf("%s\n", out)
 
 			err = c.Wait()
 			if err != nil {
