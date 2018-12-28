@@ -77,7 +77,7 @@ var pushCmd = &cobra.Command{
 		}
 
 		{
-			c := exec.Command("git", "push", "origin master")
+			c := exec.Command("git", "push", "origin", "master")
 			stderr, err := c.StderrPipe()
 			if err != nil {
 				logger.Fatal("failed to stage files", zap.Error(err))
