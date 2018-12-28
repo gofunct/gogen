@@ -46,7 +46,7 @@ var pushCmd = &cobra.Command{
 
 			err = c.Start()
 			if err != nil {
-				log.Fatal("%s %s", "failed to stage files", err)
+				log.Fatalf("%s, %s", "failed to pipe errors", err)
 			}
 			logger.UI.Running("Waiting for command to finish...")
 			out, _ := ioutil.ReadAll(stderr)
@@ -64,12 +64,12 @@ var pushCmd = &cobra.Command{
 			c := exec.Command("git", "commit", "-m", commitMsg)
 			stderr, err := c.StderrPipe()
 			if err != nil {
-				log.Fatal("failed to stage files", err)
+				log.Fatalf("%s, %s", "failed to pipe errors", err)
 			}
 
 			err = c.Start()
 			if err != nil {
-				log.Fatal("failed to stage files", err)
+				log.Fatal("failed to commit files", err)
 			}
 			logger.UI.Running("Waiting for command to finish...")
 			out, _ := ioutil.ReadAll(stderr)
@@ -86,11 +86,11 @@ var pushCmd = &cobra.Command{
 			c := exec.Command("git", "push", "origin", "master")
 			stderr, err := c.StderrPipe()
 			if err != nil {
-				log.Fatalf("%s, %s", "failed to stage files", err)
+				log.Fatalf("%s, %s", "failed to pipe errors", err)
 			}
 
 			if err != nil {
-				log.Fatal("failed to stage files", err)
+				log.Fatal("failed to push commit", err)
 			}
 			logger.UI.Running("Waiting for command to finish...")
 			out, _ := ioutil.ReadAll(stderr)
