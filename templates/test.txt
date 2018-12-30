@@ -3,7 +3,7 @@
 author = Coleman Word
 service = user
 domain = 
-summary = the default gocookiecutter configuration settings!
+summary = the default gogen configuration settings!
 git_username = gofunct
 docker_username = colemanword
 transport = grpc

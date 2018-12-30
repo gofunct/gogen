@@ -23,7 +23,7 @@ package template
 import (
 	"github.com/gofunct/common/logging"
 	"log"
-	"github.com/gofunct/gocookiecutter/gocookie"
+	"github.com/gofunct/gogen/config"
 	"github.com/spf13/cobra"
 	"os"
 	kitlog "github.com/go-kit/kit/log"
@@ -33,7 +33,7 @@ var (
 	logger = logging.NewLogger()
 	goPath = os.Getenv("GOPATH")
 	destPath string
-	cookie  *gocookie.GoCookieConfig
+	cookie  *config.GoCookieConfig
 )
 
 func init() {

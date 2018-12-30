@@ -14,7 +14,7 @@
 
 package main
 
-import "github.com/gofunct/gocookiecutter/cmd"
+import "github.com/gofunct/gogen/cmd"
 
 func main() {
 	cmd.Execute()

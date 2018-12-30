@@ -17,11 +17,11 @@ package cmd
 import (
 	"fmt"
 	"github.com/gofunct/common/logging"
-	"github.com/gofunct/gocookiecutter/cmd/docker"
-	"github.com/gofunct/gocookiecutter/cmd/git"
-	"github.com/gofunct/gocookiecutter/cmd/protoc"
-	"github.com/gofunct/gocookiecutter/cmd/template"
-	ccobra 	"github.com/gofunct/gocookiecutter/cmd/cobra"
+	"github.com/gofunct/gogen/cmd/docker"
+	"github.com/gofunct/gogen/cmd/git"
+	"github.com/gofunct/gogen/cmd/protoc"
+	"github.com/gofunct/gogen/cmd/template"
+	ccobra 	"github.com/gofunct/gogen/cmd/cobra"
 	"github.com/spf13/cobra"
 	"log"
 	"os"
@@ -35,7 +35,7 @@ var (
 
 // RootCmd represents the base command when called without any subcommands
 var RootCmd = &cobra.Command{
-	Use:   "gocookiecutter",
+	Use:   "gogen",
 	Short: "A brief description of your application",
 }
 

@@ -1,4 +1,4 @@
-package gocookie
+package config
 
 import (
 	"github.com/Masterminds/sprig"
@@ -36,14 +36,14 @@ func NewGoCookieConfig() (*GoCookieConfig, error) {
 		Os:     &afero.OsFs{},
 	}
 
-		g.Config.SetConfigName("gocookiecutter")
+		g.Config.SetConfigName("gogen")
 		g.Config.AddConfigPath(".")
 		g.Config.AutomaticEnv()
 		g.Config.SetDefault("app", "app")
 		g.Config.SetDefault("service", "user")
 		g.Config.SetDefault("domain", "")
 		g.Config.SetDefault("author", "Coleman Word")
-		g.Config.SetDefault("summary", "the default gocookiecutter configuration settings!")
+		g.Config.SetDefault("summary", "the default gogen configuration settings!")
 		g.Config.SetDefault("git_username", "gofunct")
 		g.Config.SetDefault("docker_username", "colemanword")
 		g.Config.SetDefault("transport", "grpc")
@@ -69,7 +69,7 @@ func NewGoCookieConfig() (*GoCookieConfig, error) {
 	// If a config file is found, read it in.
 	if err = g.Config.ReadInConfig(); err != nil {
 		log.Printf("%s, %s", "failed to read config file, writing defaults...", err)
-		if err = g.Config.WriteConfigAs("gocookiecutter.yaml"); err != nil {
+		if err = g.Config.WriteConfigAs("gogen.yaml"); err != nil {
 			return nil, err
 		}
 

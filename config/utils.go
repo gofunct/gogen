@@ -1,4 +1,4 @@
-package gocookie
+package config
 
 import (
 	"github.com/Masterminds/sprig"

@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	appName = "clig"
+	appName = "cobra"
 	version = "v0.2.0"
 )
 
@@ -19,7 +19,7 @@ var (
 
 var CobraCmd = &cobra.Command{
 	Use: "init",
-	Short: "N/A",
+	Short: "generate a new cobra based application",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		return run()
 	},
