@@ -36,7 +36,7 @@ var (
 // RootCmd represents the base command when called without any subcommands
 var RootCmd = &cobra.Command{
 	Use:   "gogen",
-	Short: "A brief description of your application",
+	Short: "A dev utitility tool for golang based projects",
 }
 
 func Execute() {

@@ -1,45 +1,18 @@
 package cobra
 
-import (
-	"github.com/gofunct/common/clib"
-	ccmd "github.com/gofunct/common/clig/cmd"
-	"github.com/spf13/cobra"
-	"os"
-)
-
-const (
-	appName = "cobra"
-	version = "v0.2.0"
-)
+import "github.com/spf13/cobra"
 
 var (
-	revision, buildDate string
+	appName, version, revision, buildDate string
 )
 
+func init() {
+	CobraCmd.AddCommand(genCmd)
+	CobraCmd.PersistentFlags().StringVarP(&appName, "app", "a", "", "the desired cli app name")
+	CobraCmd.PersistentFlags().StringVarP(&appName, "version", "v", "0.1.0", "the version of the cli application")
+}
 
 var CobraCmd = &cobra.Command{
-	Use: "init",
-	Short: "generate a new cobra based application",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return run()
-	},
-
+	Use:  "cobra",
+	Short: "cobra cli opts",
 }
-
-
-func run() error {
-	wd, err := os.Getwd()
-	if err != nil {
-		return err
-	}
-
-	c := ccmd.NewDefaultCligCommand(clib.Path(wd), clib.Build{
-		AppName:   appName,
-		Version:   version,
-		Revision:  revision,
-		BuildDate: buildDate,
-	})
-
-	return c.Execute()
-}
-
