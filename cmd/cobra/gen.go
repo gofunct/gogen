@@ -1,16 +1,12 @@
 package cobra
 
 import (
-	"github.com/gofunct/common/clib"
-	ccmd "github.com/gofunct/common/clig/cmd"
+	ccmd "github.com/gofunct/common/cli/cmd"
+	"github.com/gofunct/common/files"
 	"github.com/spf13/cobra"
 	"os"
+	"github.com/gofunct/common/build"
 )
-
-
-var (
-)
-
 
 var genCmd = &cobra.Command{
 	Use: "gen",
@@ -28,7 +24,7 @@ func run() error {
 		return err
 	}
 
-	c := ccmd.NewDefaultCligCommand(clib.Path(wd), clib.Build{
+	c := ccmd.NewDefaultCligCommand(files.Path(wd), build.Build{
 		AppName:   appName,
 		Version:   version,
 		Revision:  revision,

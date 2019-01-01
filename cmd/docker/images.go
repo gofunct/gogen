@@ -28,7 +28,6 @@ import (
 )
 
 func init() {
-	DockerCmd.AddCommand(imagesCmd)
 }
 
 // imagesCmd represents the images command

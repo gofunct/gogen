@@ -15,19 +15,20 @@
 package docker
 
 import (
-	"github.com/gofunct/common/logging"
 	"github.com/spf13/cobra"
+	"go.uber.org/zap"
 	"os"
 )
 
 var (
 	dockerEndpoint string
-	logger = logging.NewLogger()
+	logger, _ = zap.NewDevelopment()
 	goPath = os.Getenv("GOPATH")
 )
 
 func init() {
-	logger.AddColor()
+	DockerCmd.AddCommand(imagesCmd)
+	DockerCmd.AddCommand(dbCmd)
 	DockerCmd.PersistentFlags().StringVarP(&dockerEndpoint, "endpoint", "e", "unix:///var/run/docker.sock", "docker endpoint")
 }
 

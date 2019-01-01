@@ -17,19 +17,19 @@ package cmd
 import (
 	"fmt"
 	"github.com/gofunct/common/logging"
+	"github.com/gofunct/gogen/cmd/cloud"
+	ccobra "github.com/gofunct/gogen/cmd/cobra"
 	"github.com/gofunct/gogen/cmd/docker"
 	"github.com/gofunct/gogen/cmd/git"
 	"github.com/gofunct/gogen/cmd/protoc"
 	"github.com/gofunct/gogen/cmd/template"
-	ccobra 	"github.com/gofunct/gogen/cmd/cobra"
 	"github.com/spf13/cobra"
-	"log"
+	"go.uber.org/zap"
 	"os"
-	kitlog "github.com/go-kit/kit/log"
 )
 
 var (
-	logger = logging.NewLogger()
+	logger, _ = zap.NewDevelopment()
 	goPath = os.Getenv("GOPATH")
 )
 
@@ -47,14 +47,14 @@ func Execute() {
 }
 
 func init() {
-	logger.AddColor()
-	log.SetOutput(kitlog.NewStdlibAdapter(logger.KitLog))
+	logging.AddLoggingFlags(RootCmd)
 	{
 		RootCmd.AddCommand(git.GitCmd)
 		RootCmd.AddCommand(docker.DockerCmd)
 		RootCmd.AddCommand(protoc.ProtocCmd)
 		RootCmd.AddCommand(template.TemplateCmd)
 		RootCmd.AddCommand(ccobra.CobraCmd)
+		RootCmd.AddCommand(cloud.CloudCmd)
 	}
 
 	{
