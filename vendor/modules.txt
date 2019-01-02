@@ -1,9 +1,3 @@
-# github.com/Masterminds/semver v1.4.2
-github.com/Masterminds/semver
-# github.com/Masterminds/sprig v2.16.0+incompatible
-github.com/Masterminds/sprig
-# github.com/aokoli/goutils v1.0.1
-github.com/aokoli/goutils
 # github.com/bradleyjkemp/cupaloy v2.3.0+incompatible
 github.com/bradleyjkemp/cupaloy
 # github.com/davecgh/go-spew v1.1.1
@@ -12,70 +6,34 @@ github.com/davecgh/go-spew/spew
 github.com/daviddengcn/go-colortext
 # github.com/fatih/color v1.7.0
 github.com/fatih/color
-# github.com/fsnotify/fsnotify v1.4.7
-github.com/fsnotify/fsnotify
+# github.com/gofunct/bingen v0.0.0-20190102020125-13eef7615a05
+github.com/gofunct/bingen
+github.com/gofunct/bingen/cmd
 # github.com/gofunct/common v0.0.0-20181231221528-3ad8aa41a5b2
-github.com/gofunct/common/logging
-github.com/gofunct/common/build
 github.com/gofunct/common/files
 github.com/gofunct/common/io
+github.com/gofunct/common/logging
+github.com/gofunct/common/templates
 github.com/gofunct/common/errors
-github.com/gofunct/common/bingen/tool
 github.com/gofunct/common/bingen
 github.com/gofunct/common/bingen/manager
 github.com/gofunct/common/bingen/manager/dep
 github.com/gofunct/common/bingen/manager/mod
+github.com/gofunct/common/bingen/tool
 # github.com/gogo/protobuf v1.2.0
 github.com/gogo/protobuf/proto
 # github.com/golang/mock v1.1.1
 github.com/golang/mock/mockgen
-github.com/golang/mock/gomock
 github.com/golang/mock/mockgen/model
 # github.com/golang/protobuf v1.2.0
-github.com/golang/protobuf/jsonpb
 github.com/golang/protobuf/proto
-github.com/golang/protobuf/protoc-gen-go/generator
-github.com/golang/protobuf/ptypes/any
-github.com/golang/protobuf/ptypes/duration
-github.com/golang/protobuf/ptypes/timestamp
-github.com/golang/protobuf/ptypes/wrappers
-github.com/golang/protobuf/protoc-gen-go/descriptor
-github.com/golang/protobuf/ptypes/struct
-github.com/golang/protobuf/protoc-gen-go/generator/internal/remap
-github.com/golang/protobuf/protoc-gen-go/plugin
-github.com/golang/protobuf/ptypes
-# github.com/google/go-cmp v0.2.0
-github.com/google/go-cmp/cmp
-github.com/google/go-cmp/cmp/internal/diff
-github.com/google/go-cmp/cmp/internal/function
-github.com/google/go-cmp/cmp/internal/value
 # github.com/google/go-github v17.0.0+incompatible
 github.com/google/go-github/github
 # github.com/google/go-querystring v1.0.0
 github.com/google/go-querystring/query
-# github.com/google/uuid v1.1.0
-github.com/google/uuid
 # github.com/google/wire v0.2.0
 github.com/google/wire/cmd/wire
-github.com/google/wire
 github.com/google/wire/internal/wire
-# github.com/grpc-ecosystem/go-grpc-middleware v1.0.0
-github.com/grpc-ecosystem/go-grpc-middleware
-# github.com/grpc-ecosystem/grpc-gateway v1.6.3
-github.com/grpc-ecosystem/grpc-gateway/runtime
-github.com/grpc-ecosystem/grpc-gateway/runtime/internal
-github.com/grpc-ecosystem/grpc-gateway/utilities
-# github.com/hashicorp/hcl v1.0.0
-github.com/hashicorp/hcl
-github.com/hashicorp/hcl/hcl/printer
-github.com/hashicorp/hcl/hcl/ast
-github.com/hashicorp/hcl/hcl/parser
-github.com/hashicorp/hcl/hcl/token
-github.com/hashicorp/hcl/json/parser
-github.com/hashicorp/hcl/hcl/scanner
-github.com/hashicorp/hcl/hcl/strconv
-github.com/hashicorp/hcl/json/scanner
-github.com/hashicorp/hcl/json/token
 # github.com/haya14busa/errorformat v0.0.0-20180607161917-689b7d67b7a8
 github.com/haya14busa/errorformat/fmts
 github.com/haya14busa/errorformat
@@ -87,40 +45,16 @@ github.com/haya14busa/reviewdog/doghouse
 github.com/haya14busa/reviewdog/doghouse/client
 github.com/haya14busa/reviewdog/project
 github.com/haya14busa/reviewdog/diff
-# github.com/huandu/xstrings v1.2.0
-github.com/huandu/xstrings
-# github.com/imdario/mergo v0.3.6
-github.com/imdario/mergo
+# github.com/iancoleman/strcase v0.0.0-20180726023541-3605ed457bf7
+github.com/iancoleman/strcase
 # github.com/inconshreveable/mousetrap v1.0.0
 github.com/inconshreveable/mousetrap
-# github.com/izumin5210/clig v0.2.0
-github.com/izumin5210/clig/pkg/clib
-# github.com/izumin5210/gex v0.4.4
-github.com/izumin5210/gex/cmd/gex
-github.com/izumin5210/gex
-github.com/izumin5210/gex/pkg/manager
-github.com/izumin5210/gex/pkg/manager/dep
-github.com/izumin5210/gex/pkg/manager/mod
-github.com/izumin5210/gex/pkg/tool
-# github.com/izumin5210/grapi v0.3.2
-github.com/izumin5210/grapi/pkg/cli
-github.com/izumin5210/grapi/pkg/gencmd
-github.com/izumin5210/grapi/pkg/gencmd/testing
-github.com/izumin5210/grapi/pkg/grapicmd
-github.com/izumin5210/grapi/pkg/protoc
-github.com/izumin5210/grapi/pkg/svcgen
-github.com/izumin5210/grapi/pkg/svcgen/testing
-github.com/izumin5210/grapi/pkg/grapicmd/util/fs
-github.com/izumin5210/grapi/pkg/svcgen/params
-github.com/izumin5210/grapi/pkg/gencmd/util
 # github.com/jessevdk/go-assets v0.0.0-20160921144138-4f4301a06e15
 github.com/jessevdk/go-assets
 # github.com/jessevdk/go-assets-builder v0.0.0-20130903091706-b8483521738f
 github.com/jessevdk/go-assets-builder
 # github.com/jessevdk/go-flags v1.4.0
 github.com/jessevdk/go-flags
-# github.com/jinzhu/inflection v0.0.0-20180308033659-04140366298a
-github.com/jinzhu/inflection
 # github.com/kisielk/errcheck v1.1.0
 github.com/kisielk/errcheck
 github.com/kisielk/errcheck/internal/errcheck
@@ -129,8 +63,6 @@ github.com/kisielk/gotool
 github.com/kisielk/gotool/internal/load
 # github.com/kyokomi/emoji v2.0.0+incompatible
 github.com/kyokomi/emoji
-# github.com/magiconair/properties v1.8.0
-github.com/magiconair/properties
 # github.com/mattn/go-colorable v0.0.9
 github.com/mattn/go-colorable
 # github.com/mattn/go-isatty v0.0.4
@@ -141,33 +73,17 @@ github.com/mattn/go-shellwords
 github.com/mitchellh/gox
 # github.com/mitchellh/iochan v1.0.0
 github.com/mitchellh/iochan
-# github.com/mitchellh/mapstructure v1.1.2
-github.com/mitchellh/mapstructure
-# github.com/pelletier/go-toml v1.2.0
-github.com/pelletier/go-toml
 # github.com/pkg/errors v0.8.0
 github.com/pkg/errors
 # github.com/pmezard/go-difflib v1.0.0
 github.com/pmezard/go-difflib/difflib
-# github.com/serenize/snaker v0.0.0-20171204205717-a683aaf2d516
-github.com/serenize/snaker
-# github.com/shurcooL/httpfs v0.0.0-20181222201310-74dc9339e414
-github.com/shurcooL/httpfs/vfsutil
-# github.com/soheilhy/cmux v0.1.4
-github.com/soheilhy/cmux
 # github.com/spf13/afero v1.2.0
 github.com/spf13/afero
 github.com/spf13/afero/mem
-# github.com/spf13/cast v1.3.0
-github.com/spf13/cast
 # github.com/spf13/cobra v0.0.3
 github.com/spf13/cobra
-# github.com/spf13/jwalterweatherman v1.0.0
-github.com/spf13/jwalterweatherman
 # github.com/spf13/pflag v1.0.3
 github.com/spf13/pflag
-# github.com/spf13/viper v1.3.1
-github.com/spf13/viper
 # github.com/srvc/wraperr v0.2.0
 github.com/srvc/wraperr/cmd/wraperr
 github.com/srvc/wraperr
@@ -188,19 +104,11 @@ go.uber.org/zap/internal/color
 go.uber.org/zap/internal/exit
 # golang.org/x/crypto v0.0.0-20181203042331-505ab145d0a9
 golang.org/x/crypto/ssh/terminal
-golang.org/x/crypto/scrypt
-golang.org/x/crypto/pbkdf2
 # golang.org/x/lint v0.0.0-20181217174547-8f45f776aaf1
 golang.org/x/lint/golint
 golang.org/x/lint
 # golang.org/x/net v0.0.0-20181106065722-10aee1819953
 golang.org/x/net/context
-golang.org/x/net/http2
-golang.org/x/net/http2/hpack
-golang.org/x/net/trace
-golang.org/x/net/http/httpguts
-golang.org/x/net/idna
-golang.org/x/net/internal/timeseries
 golang.org/x/net/context/ctxhttp
 # golang.org/x/oauth2 v0.0.0-20181017192945-9dcd33a902f4
 golang.org/x/oauth2
@@ -213,8 +121,6 @@ golang.org/x/sys/windows
 # golang.org/x/text v0.3.0
 golang.org/x/text/transform
 golang.org/x/text/unicode/norm
-golang.org/x/text/secure/bidirule
-golang.org/x/text/unicode/bidi
 # golang.org/x/tools v0.0.0-20181017214349-06f26fdaaa28
 golang.org/x/tools/go/types/typeutil
 golang.org/x/tools/go/buildutil
@@ -240,38 +146,6 @@ google.golang.org/appengine/internal/base
 google.golang.org/appengine/internal/datastore
 google.golang.org/appengine/internal/log
 google.golang.org/appengine/internal/remote_api
-# google.golang.org/genproto v0.0.0-20181221175505-bd9b4fb69e2f
-google.golang.org/genproto/protobuf/field_mask
-google.golang.org/genproto/googleapis/rpc/status
-# google.golang.org/grpc v1.16.0
-google.golang.org/grpc
-google.golang.org/grpc/grpclog
-google.golang.org/grpc/reflection
-google.golang.org/grpc/codes
-google.golang.org/grpc/metadata
-google.golang.org/grpc/status
-google.golang.org/grpc/balancer
-google.golang.org/grpc/balancer/roundrobin
-google.golang.org/grpc/connectivity
-google.golang.org/grpc/credentials
-google.golang.org/grpc/encoding
-google.golang.org/grpc/encoding/proto
-google.golang.org/grpc/internal
-google.golang.org/grpc/internal/backoff
-google.golang.org/grpc/internal/channelz
-google.golang.org/grpc/internal/envconfig
-google.golang.org/grpc/internal/grpcrand
-google.golang.org/grpc/internal/transport
-google.golang.org/grpc/keepalive
-google.golang.org/grpc/naming
-google.golang.org/grpc/peer
-google.golang.org/grpc/resolver
-google.golang.org/grpc/resolver/dns
-google.golang.org/grpc/resolver/passthrough
-google.golang.org/grpc/stats
-google.golang.org/grpc/tap
-google.golang.org/grpc/reflection/grpc_reflection_v1alpha
-google.golang.org/grpc/balancer/base
 # gopkg.in/dixonwille/wlog.v2 v2.0.0
 gopkg.in/dixonwille/wlog.v2
 # gopkg.in/yaml.v2 v2.2.2
