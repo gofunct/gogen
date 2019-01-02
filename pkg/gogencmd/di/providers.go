@@ -8,7 +8,7 @@ import (
 	"github.com/gofunct/gogen/pkg/protoc"
 	"github.com/google/wire"
 	"github.com/gofunct/common/bingen"
-
+	"github.com/gofunct/gogen/pkg/gogencmd/internal/module/generator"
 	"github.com/gofunct/gogen/pkg/cli"
 	"github.com/gofunct/gogen/pkg/excmd"
 )

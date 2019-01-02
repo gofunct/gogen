@@ -2,18 +2,18 @@ package main
 
 import (
 	"context"
+	"github.com/gofunct/common/files"
+	"github.com/gofunct/gogen/pkg/cli"
+	"github.com/gofunct/gogen/pkg/gencmd"
+	"github.com/gofunct/gogen/pkg/gogencmd"
+	"github.com/gofunct/gogen/pkg/svcgen"
+	"github.com/gofunct/gogen/pkg/protoc"
 	"testing"
 
 	"github.com/spf13/afero"
 
-	"github.com/izumin5210/clig/pkg/clib"
-	"github.com/gofunct/gogen/cli"
-	"github.com/gofunct/gogen/gencmd"
-	gencmdtesting "github.com/gofunct/gogen/gencmd/testing"
-	"github.com/gofunct/gogen/grapicmd"
-	"github.com/gofunct/gogen/protoc"
-	"github.com/gofunct/gogen/svcgen"
-	svcgentesting "github.com/gofunct/gogen/svcgen/testing"
+	gencmdtesting "github.com/gofunct/gogen/pkg/gencmd/testing"
+	svcgentesting "github.com/gofunct/gogen/pkg/svcgen/testing"
 )
 
 func TestRun(t *testing.T) {
@@ -170,7 +170,7 @@ func TestRun(t *testing.T) {
 		},
 	}
 
-	rootDir := cli.RootDir{clib.Path("/home/src/testapp")}
+	rootDir := cli.RootDir{files.Path("/home/src/testapp")}
 
 	createSvcApp := func(cmd *gencmd.Command) (*svcgen.App, error) {
 		return svcgentesting.NewTestApp(cmd, &fakeProtocWrapper{}, cli.NopUI)
@@ -179,10 +179,10 @@ func TestRun(t *testing.T) {
 		return gencmdtesting.NewTestApp(cmd, cli.NopUI)
 	}
 	createCmd := func(t *testing.T, fs afero.Fs, tc svcgentesting.Case) gencmd.Executor {
-		ctx := &grapicmd.Ctx{
+		ctx := &gogencmd.Ctx{
 			FS:      fs,
 			RootDir: rootDir,
-			Config: grapicmd.Config{
+			Config: gogencmd.Config{
 				Package: tc.PkgName,
 			},
 			ProtocConfig: protoc.Config{
@@ -190,7 +190,7 @@ func TestRun(t *testing.T) {
 				OutDir:    tc.ProtoOutDir,
 			},
 		}
-		ctx.Config.Grapi.ServerDir = tc.ServerDir
+		ctx.Config.Gogen.ServerDir = tc.ServerDir
 		return buildCommand(createSvcApp, gencmd.WithGrapiCtx(ctx), gencmd.WithCreateAppFunc(createGenApp))
 	}
 

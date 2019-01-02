@@ -8,7 +8,7 @@ import (
 	"github.com/spf13/afero"
 
 	"github.com/gofunct/gogen/pkg/excmd/testing"
-	"github.com/gofunct/gogen/pkg/gogencmdinternal/module"
+	"github.com/gofunct/gogen/pkg/gogencmd/internal/module"
 )
 
 type testContext struct {

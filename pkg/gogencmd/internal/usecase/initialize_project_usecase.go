@@ -10,7 +10,6 @@ import (
 	"github.com/gofunct/gogen/pkg/gogencmd/internal/module"
 )
 
-// InitializeProjectUsecase is an interface to create a new grapi project.
 type InitializeProjectUsecase interface {
 	Perform(rootDir string, cfg InitConfig) error
 	GenerateProject(rootDir, pkgName string) error
@@ -61,11 +60,11 @@ func (u *initializeProjectUsecase) InstallDeps(rootDir string, cfg InitConfig) e
 		spec := cfg.BuildSpec()
 		err = repo.Add(
 			context.TODO(),
-			"github.com/izumin5210/grapi/cmd/grapi"+spec,
-			"github.com/izumin5210/grapi/cmd/grapi-gen-command",
-			"github.com/izumin5210/grapi/cmd/grapi-gen-service",
-			"github.com/izumin5210/grapi/cmd/grapi-gen-scaffold-service",
-			"github.com/izumin5210/grapi/cmd/grapi-gen-type",
+			"github.com/gofunct/gogen/cmd/gogen"+spec,
+			"github.com/gofunct/gogen/cmd/gogen-gen-command",
+			"github.com/gofunct/gogen/cmd/gogen-gen-service",
+			"github.com/gofunct/gogen/cmd/gogen-gen-scaffold-service",
+			"github.com/gofunct/gogen/cmd/gogen-gen-type",
 			// TODO: make configurable
 			"github.com/golang/protobuf/protoc-gen-go",
 			"github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway",

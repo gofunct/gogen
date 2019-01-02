@@ -6,9 +6,9 @@ import (
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 
-	"github.com/gofunct/gogen/gencmd"
-	"github.com/gofunct/gogen/svcgen"
-	"github.com/gofunct/gogen/svcgen/template"
+	"github.com/gofunct/gogen/pkg/gencmd"
+	"github.com/gofunct/gogen/pkg/svcgen"
+	"github.com/gofunct/gogen/pkg/svcgen/template"
 )
 
 func main() {

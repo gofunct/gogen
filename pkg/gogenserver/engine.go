@@ -8,7 +8,7 @@ import (
 	"reflect"
 	"syscall"
 
-	"github.com/gofunct/gogen/grapiserver/internal"
+	"github.com/gofunct/gogen/pkg/gogenserver/internal"
 	"github.com/pkg/errors"
 	"github.com/soheilhy/cmux"
 	"golang.org/x/sync/errgroup"

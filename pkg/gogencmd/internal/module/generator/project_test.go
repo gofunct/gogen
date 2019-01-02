@@ -42,7 +42,7 @@ func TestProjectGenerator_GenerateProject(t *testing.T) {
 			files := []string{
 				".gitignore",
 				"Gopkg.toml",
-				"grapi.toml",
+				"gogen.toml",
 				"app/run.go",
 				"cmd/server/run.go",
 			}

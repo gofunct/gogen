@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
-	"github.com/gofunct/gogen/grapiserver/internal"
+	"github.com/gofunct/gogen/pkg/gogenserver/internal"
 	"github.com/pkg/errors"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/grpclog"

@@ -23,10 +23,10 @@ func TestCtx(t *testing.T) {
 
 	fs := afero.NewMemMapFs()
 	orDie(t, fs.MkdirAll(cwd, 0755))
-	orDie(t, afero.WriteFile(fs, root.Join("grapi.toml").String(), []byte(`
+	orDie(t, afero.WriteFile(fs, root.Join("gogen.toml").String(), []byte(`
 package = "awesomeapp"
 
-[grapi]
+[gogen]
 server_dir = "./app/server"
 
 [protoc]

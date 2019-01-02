@@ -17,11 +17,6 @@ package cmd
 import (
 	"fmt"
 	"github.com/gofunct/common/logging"
-	"github.com/gofunct/gogen/cmd/cloud"
-	ccobra "github.com/gofunct/gogen/cmd/cobra"
-	"github.com/gofunct/gogen/cmd/docker"
-	"github.com/gofunct/gogen/cmd/git"
-	"github.com/gofunct/gogen/cmd/protoc"
 	"github.com/gofunct/gogen/cmd/template"
 	"github.com/spf13/cobra"
 	"go.uber.org/zap"
@@ -49,12 +44,7 @@ func Execute() {
 func init() {
 	logging.AddLoggingFlags(RootCmd)
 	{
-		RootCmd.AddCommand(git.GitCmd)
-		RootCmd.AddCommand(docker.DockerCmd)
-		RootCmd.AddCommand(protoc.ProtocCmd)
 		RootCmd.AddCommand(template.TemplateCmd)
-		RootCmd.AddCommand(ccobra.CobraCmd)
-		RootCmd.AddCommand(cloud.CloudCmd)
 	}
 
 	{

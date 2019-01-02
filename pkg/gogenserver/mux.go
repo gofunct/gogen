@@ -3,7 +3,7 @@ package grapiserver
 import (
 	"net"
 
-	"github.com/gofunct/gogen/grapiserver/internal"
+	"github.com/gofunct/gogen/pkg/gogenserver/internal"
 	"github.com/pkg/errors"
 	"github.com/soheilhy/cmux"
 	"google.golang.org/grpc/grpclog"

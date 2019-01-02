@@ -7,7 +7,7 @@ import (
 	"google.golang.org/grpc/grpclog"
 	"google.golang.org/grpc/reflection"
 
-	"github.com/gofunct/gogen/grapiserver/internal"
+	"github.com/gofunct/gogen/pkg/gogenserver/internal"
 	"github.com/pkg/errors"
 )
 

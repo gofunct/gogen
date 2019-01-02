@@ -9,45 +9,45 @@ import (
 	"github.com/gofunct/common/bingen/tool"
 	"github.com/gofunct/gogen/pkg/cli"
 	"github.com/gofunct/gogen/pkg/excmd"
-	"github.com/gofunct/gogen/grapicmd"
-	"github.com/gofunct/gogen/pkg/gogencmdinternal/module"
-	"github.com/gofunct/gogen/pkg/gogencmdinternal/usecase"
-	"github.com/gofunct/gogen/protoc"
+	"github.com/gofunct/gogen/pkg/gogencmd"
+	"github.com/gofunct/gogen/pkg/gogencmd/internal/module"
+	"github.com/gofunct/gogen/pkg/gogencmd/internal/usecase"
+	"github.com/gofunct/gogen/pkg/protoc"
 )
 
 // Injectors from wire.go:
 
-func NewUI(ctx *grapicmd.Ctx) cli.UI {
-	io := grapicmd.ProvideIO(ctx)
+func NewUI(ctx *gogencmd.Ctx) cli.UI {
+	io := gogencmd.ProvideIO(ctx)
 	ui := cli.UIInstance(io)
 	return ui
 }
 
-func NewCommandExecutor(ctx *grapicmd.Ctx) excmd.Executor {
-	io := grapicmd.ProvideIO(ctx)
+func NewCommandExecutor(ctx *gogencmd.Ctx) excmd.Executor {
+	io := gogencmd.ProvideIO(ctx)
 	executor := excmd.NewExecutor(io)
 	return executor
 }
 
-func NewGenerator(ctx *grapicmd.Ctx) module.Generator {
-	io := grapicmd.ProvideIO(ctx)
+func NewGenerator(ctx *gogencmd.Ctx) module.Generator {
+	io := gogencmd.ProvideIO(ctx)
 	ui := cli.UIInstance(io)
 	generator := ProvideGenerator(ctx, ui)
 	return generator
 }
 
-func NewScriptLoader(ctx *grapicmd.Ctx) module.ScriptLoader {
-	io := grapicmd.ProvideIO(ctx)
+func NewScriptLoader(ctx *gogencmd.Ctx) module.ScriptLoader {
+	io := gogencmd.ProvideIO(ctx)
 	executor := excmd.NewExecutor(io)
 	scriptLoader := ProvideScriptLoader(ctx, executor)
 	return scriptLoader
 }
 
-func NewToolRepository(ctx *grapicmd.Ctx) (tool.Repository, error) {
-	fs := grapicmd.ProvideFS(ctx)
-	execInterface := grapicmd.ProvideExecer(ctx)
-	io := grapicmd.ProvideIO(ctx)
-	rootDir := grapicmd.ProvideRootDir(ctx)
+func NewToolRepository(ctx *gogencmd.Ctx) (tool.Repository, error) {
+	fs := gogencmd.ProvideFS(ctx)
+	execInterface := gogencmd.ProvideExecer(ctx)
+	io := gogencmd.ProvideIO(ctx)
+	rootDir := gogencmd.ProvideRootDir(ctx)
 	config := protoc.ProvideGexConfig(fs, execInterface, io, rootDir)
 	repository, err := protoc.ProvideToolRepository(config)
 	if err != nil {
@@ -56,15 +56,15 @@ func NewToolRepository(ctx *grapicmd.Ctx) (tool.Repository, error) {
 	return repository, nil
 }
 
-func NewProtocWrapper(ctx *grapicmd.Ctx) (protoc.Wrapper, error) {
-	config := grapicmd.ProvideProtocConfig(ctx)
-	fs := grapicmd.ProvideFS(ctx)
-	execInterface := grapicmd.ProvideExecer(ctx)
-	io := grapicmd.ProvideIO(ctx)
+func NewProtocWrapper(ctx *gogencmd.Ctx) (protoc.Wrapper, error) {
+	config := gogencmd.ProvideProtocConfig(ctx)
+	fs := gogencmd.ProvideFS(ctx)
+	execInterface := gogencmd.ProvideExecer(ctx)
+	io := gogencmd.ProvideIO(ctx)
 	ui := cli.UIInstance(io)
-	rootDir := grapicmd.ProvideRootDir(ctx)
-	gexConfig := protoc.ProvideGexConfig(fs, execInterface, io, rootDir)
-	repository, err := protoc.ProvideToolRepository(gexConfig)
+	rootDir := gogencmd.ProvideRootDir(ctx)
+	bingenConfig := protoc.ProvideGexConfig(fs, execInterface, io, rootDir)
+	repository, err := protoc.ProvideToolRepository(bingenConfig)
 	if err != nil {
 		return nil, err
 	}
@@ -72,11 +72,11 @@ func NewProtocWrapper(ctx *grapicmd.Ctx) (protoc.Wrapper, error) {
 	return wrapper, nil
 }
 
-func NewInitializeProjectUsecase(ctx *grapicmd.Ctx) usecase.InitializeProjectUsecase {
-	fs := grapicmd.ProvideFS(ctx)
-	execInterface := grapicmd.ProvideExecer(ctx)
-	io := grapicmd.ProvideIO(ctx)
-	rootDir := grapicmd.ProvideRootDir(ctx)
+func NewInitializeProjectUsecase(ctx *gogencmd.Ctx) usecase.InitializeProjectUsecase {
+	fs := gogencmd.ProvideFS(ctx)
+	execInterface := gogencmd.ProvideExecer(ctx)
+	io := gogencmd.ProvideIO(ctx)
+	rootDir := gogencmd.ProvideRootDir(ctx)
 	config := protoc.ProvideGexConfig(fs, execInterface, io, rootDir)
 	ui := cli.UIInstance(io)
 	generator := ProvideGenerator(ctx, ui)

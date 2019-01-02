@@ -2,13 +2,15 @@ package main
 
 import (
 	"fmt"
+	"github.com/gofunct/common/files"
+	"github.com/gofunct/common/io"
+	"github.com/gofunct/gogen/pkg/gogencmd"
 	"os"
 
-	"github.com/izumin5210/clig/pkg/clib"
 
-	"github.com/gofunct/gogen/cli"
-	"github.com/gofunct/gogen/grapicmd"
-	"github.com/gofunct/gogen/grapicmd/cmd"
+	"github.com/gofunct/gogen/pkg/cli"
+	"github.com/gofunct/gogen/pkg/gogencmd/cmd"
+	"github.com/gofunct/common/build"
 )
 
 func main() {
@@ -18,10 +20,10 @@ func main() {
 		os.Exit(1)
 	}
 
-	err = cmd.NewGrapiCommand(&grapicmd.Ctx{
-		IO:      clib.Stdio(),
-		RootDir: cli.RootDir{clib.Path(cwd)},
-		Build: clib.Build{
+	err = cmd.NewGogenCommand(&gogencmd.Ctx{
+		IO:      io.Stdio(),
+		RootDir: cli.RootDir{files.Path(cwd)},
+		Build: build.Build{
 			AppName:   name,
 			Version:   version,
 			Revision:  revision,

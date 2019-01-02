@@ -217,7 +217,7 @@ func updateServerImpl(t *testing.T, rootPath string) {
 						&ast.ImportSpec{
 							Path: &ast.BasicLit{
 								Kind:  token.STRING,
-								Value: strconv.Quote("github.com/gofunct/gogen/grapiserver"),
+								Value: strconv.Quote("github.com/gofunct/gogen/pkg/gogenserver"),
 							},
 						},
 						&ast.ImportSpec{

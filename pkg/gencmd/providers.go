@@ -6,7 +6,6 @@ import (
 
 	"github.com/google/wire"
 
-	"github.com/gofunct/gogen/grapicmd"
 )
 
 func ProvideGrapiCtx(ctx *Ctx) *gogencmd.Ctx         { return ctx.Ctx }

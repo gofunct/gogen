@@ -7,13 +7,13 @@ import (
 	"github.com/spf13/afero"
 
 	"github.com/izumin5210/clig/pkg/clib"
-	"github.com/gofunct/gogen/cli"
-	"github.com/gofunct/gogen/gencmd"
-	gencmdtesting "github.com/gofunct/gogen/gencmd/testing"
-	"github.com/gofunct/gogen/grapicmd"
-	"github.com/gofunct/gogen/protoc"
-	"github.com/gofunct/gogen/svcgen"
-	svcgentesting "github.com/gofunct/gogen/svcgen/testing"
+	"github.com/izumin5210/grapi/pkg/cli"
+	"github.com/izumin5210/grapi/pkg/gencmd"
+	gencmdtesting "github.com/izumin5210/grapi/pkg/gencmd/testing"
+	"github.com/izumin5210/grapi/pkg/grapicmd"
+	"github.com/izumin5210/grapi/pkg/protoc"
+	"github.com/izumin5210/grapi/pkg/svcgen"
+	svcgentesting "github.com/izumin5210/grapi/pkg/svcgen/testing"
 )
 
 func TestRun(t *testing.T) {

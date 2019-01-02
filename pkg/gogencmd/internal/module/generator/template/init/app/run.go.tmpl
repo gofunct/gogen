@@ -1,14 +1,14 @@
 package app
 
 import (
-	"github.com/gofunct/gogen/grapiserver"
+	"github.com/gofunct/gogen/pkg/gogenserver"
 )
 
-// Run starts the grapiserver.
+// Run starts the gogenserver.
 func Run() error {
-	s := grapiserver.New(
-		grapiserver.WithDefaultLogger(),
-		grapiserver.WithServers(
+	s := gogenserver.New(
+		gogenserver.WithDefaultLogger(),
+		gogenserver.WithServers(
 		// TODO
 		),
 	)

@@ -16,7 +16,7 @@ func newBuildCommand(ctx *gogencmd.Ctx) *cobra.Command {
 		SilenceUsage:  true,
 		RunE: func(c *cobra.Command, args []string) error {
 			if !ctx.IsInsideApp() {
-				return errors.New("protoc command should be execute inside a grapi application directory")
+				return errors.New("protoc command should be execute inside a gogen application directory")
 			}
 
 			nameSet := make(map[string]bool, len(args))

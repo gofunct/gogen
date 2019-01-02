@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/gofunct/gogen/pkg/gencmd"
+	"github.com/gofunct/gogen/cmd/gogen-gen-command/template"
 	"github.com/spf13/cobra"
 )
 

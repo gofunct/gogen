@@ -7,6 +7,7 @@ package gencmd
 
 import (
 	"github.com/gofunct/gogen/pkg/cli"
+	"github.com/gofunct/gogen/pkg/gogencmd"
 )
 
 // Injectors from wire.go:

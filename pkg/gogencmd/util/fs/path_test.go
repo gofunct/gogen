@@ -112,7 +112,7 @@ func Test_FindUserDefinedCommandPaths(t *testing.T) {
 
 	fs.MkdirAll(filepath.Join(rootPath, "app", "server"), 0755)
 	fs.MkdirAll(filepath.Join(rootPath, "api", "proto"), 0755)
-	afero.WriteFile(fs, filepath.Join(rootPath, "grapi.toml"), []byte(""), 0644)
+	afero.WriteFile(fs, filepath.Join(rootPath, "gogen.toml"), []byte(""), 0644)
 	fs.MkdirAll(filepath.Join(cmdPath, "server"), 0755)
 	afero.WriteFile(fs, filepath.Join(cmdPath, "server", "run.go"), []byte("package main"), 0644)
 	fs.MkdirAll(filepath.Join(cmdPath, "foo", "bar"), 0755)

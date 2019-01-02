@@ -18,7 +18,7 @@ func newProtocCommand(ctx *gogencmd.Ctx) *cobra.Command {
 		SilenceUsage:  true,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if !ctx.IsInsideApp() {
-				return errors.New("protoc command should be execute inside a grapi application directory")
+				return errors.New("protoc command should be execute inside a gogen application directory")
 			}
 			protocw, err := di.NewProtocWrapper(ctx)
 			if err != nil {

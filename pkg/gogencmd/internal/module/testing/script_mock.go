@@ -5,8 +5,8 @@
 package moduletesting
 
 import (
+	module "github.com/gofunct/gogen/pkg/gogencmd/internal/module"
 	gomock "github.com/golang/mock/gomock"
-	module "github.com/gofunct/gogen/pkg/gogencmdinternal/module"
 	reflect "reflect"
 )
 

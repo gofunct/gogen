@@ -21,25 +21,19 @@
 package template
 
 import (
-	"github.com/gofunct/common/logging"
-	"log"
-	"github.com/gofunct/gogen/config"
+	"github.com/gofunct/gogen/pkg/config"
 	"github.com/spf13/cobra"
 	"os"
-	kitlog "github.com/go-kit/kit/log"
 )
 
 var (
-	logger = logging.NewLogger()
 	goPath = os.Getenv("GOPATH")
 	destPath string
 	cookie  *config.GoCookieConfig
 )
 
 func init() {
-	logger.AddColor()
 
-	log.SetOutput(kitlog.NewStdlibAdapter(logger.KitLog))
 	TemplateCmd.AddCommand(genCmd)
 	TemplateCmd.AddCommand(funcCmd)
 	TemplateCmd.PersistentFlags().StringVarP(&destPath, "dest-path", "d", ".", "specify the path to the output directory")

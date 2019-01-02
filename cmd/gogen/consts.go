@@ -1,8 +1,8 @@
 package main
 
 const (
-	name    = "grapi"
-	version = "v0.3.2"
+	name    = "gogen"
+	version = "v0.1.1"
 )
 
 var (

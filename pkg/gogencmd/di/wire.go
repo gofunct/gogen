@@ -3,48 +3,48 @@
 package di
 
 import (
-	"github.com/google/wire"
 	"github.com/gofunct/common/bingen/tool"
+	"github.com/google/wire"
 
 	"github.com/gofunct/gogen/pkg/cli"
 	"github.com/gofunct/gogen/pkg/excmd"
-	"github.com/gofunct/gogen/grapicmd"
-	"github.com/gofunct/gogen/pkg/gogencmdinternal/module"
-	"github.com/gofunct/gogen/pkg/gogencmdinternal/usecase"
-	"github.com/gofunct/gogen/protoc"
+	"github.com/gofunct/gogen/pkg/gogencmd"
+	"github.com/gofunct/gogen/pkg/gogencmd/internal/module"
+	"github.com/gofunct/gogen/pkg/gogencmd/internal/usecase"
+	"github.com/gofunct/gogen/pkg/protoc"
 )
 
-func NewUI(*grapicmd.Ctx) cli.UI {
+func NewUI(*gogencmd.Ctx) cli.UI {
 	wire.Build(Set)
 	return nil
 }
 
-func NewCommandExecutor(*grapicmd.Ctx) excmd.Executor {
+func NewCommandExecutor(*gogencmd.Ctx) excmd.Executor {
 	wire.Build(Set)
 	return nil
 }
 
-func NewGenerator(*grapicmd.Ctx) module.Generator {
+func NewGenerator(*gogencmd.Ctx) module.Generator {
 	wire.Build(Set)
 	return nil
 }
 
-func NewScriptLoader(*grapicmd.Ctx) module.ScriptLoader {
+func NewScriptLoader(*gogencmd.Ctx) module.ScriptLoader {
 	wire.Build(Set)
 	return nil
 }
 
-func NewToolRepository(*grapicmd.Ctx) (tool.Repository, error) {
+func NewToolRepository(*gogencmd.Ctx) (tool.Repository, error) {
 	wire.Build(Set)
 	return nil, nil
 }
 
-func NewProtocWrapper(*grapicmd.Ctx) (protoc.Wrapper, error) {
+func NewProtocWrapper(*gogencmd.Ctx) (protoc.Wrapper, error) {
 	wire.Build(Set)
 	return nil, nil
 }
 
-func NewInitializeProjectUsecase(*grapicmd.Ctx) usecase.InitializeProjectUsecase {
+func NewInitializeProjectUsecase(*gogencmd.Ctx) usecase.InitializeProjectUsecase {
 	wire.Build(Set)
 	return nil
 }

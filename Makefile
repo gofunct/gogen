@@ -54,44 +54,50 @@ $(foreach src,$(wildcard ./cmd/*),$(eval $(call cmd-tmpl,$(src))))
 #  Commands
 #----------------------------------------------------------------
 .PHONY: setup
-setup:
+setup: ## setup
 ifdef CI
 	curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
 endif
 	dep ensure -v -vendor-only
-	@go get github.com/izumin5210/gex/cmd/gex
-	gex --build --verbose
+	@go get github.com/gofunct/bingen
+	bingen --build --verbose
 
 .PHONY: clean
-clean:
+clean: ## clean bin
 	rm -rf $(BIN_DIR)/*
 
 .PHONY: gen
-gen:
+gen:## go generate
 	go generate ./...
 
 .PHONY: lint
-lint:
+lint: ## lint
 ifdef CI
-	gex reviewdog -reporter=github-pr-review
+	bingen reviewdog -reporter=github-pr-review
 else
-	gex reviewdog -diff="git diff master"
+	bingen reviewdog -diff="git diff master"
 endif
 
 .PHONY: test
-test:
+test: ## test all
 	go test $(GO_TEST_FLAGS) ./...
 
 .PHONY: cover
-cover:
+cover: ## test coverage
 	go test $(GO_TEST_FLAGS) $(GO_COVER_FLAGS) ./...
 
 .PHONY: test-e2e
-test-e2e:
+test-e2e: ## end to end test
 	@./_tests/e2e/run_test.sh
 
 .PHONY: all
-all: $(GENERATED_BINS)
+all: $(GENERATED_BINS) ## generate all bins
 
 .PHONY: packages
-packages: $(PACKAGES)
+packages: $(PACKAGES) ## packages
+
+install: ## go install all programs
+	go install ./...
+
+help: ## help
+	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST) | sort
