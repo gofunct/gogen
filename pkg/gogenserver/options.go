@@ -1,4 +1,4 @@
-package grapiserver
+package gogenserver
 
 import (
 	"os"

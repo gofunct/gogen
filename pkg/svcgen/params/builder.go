@@ -75,7 +75,7 @@ func (b *builderImpl) Build(path string, resName string, methodNames []string) (
 		"google/api/annotations.proto",
 	}
 	goImports := []string{
-		"github.com/gofunct/gogen/pkg/grapiserver",
+		"github.com/gofunct/gogen/pkg/gogenserver",
 		"google.golang.org/grpc/codes",
 		"google.golang.org/grpc/status",
 	}

@@ -8,7 +8,7 @@ import (
 
 )
 
-func ProvideGrapiCtx(ctx *Ctx) *gogencmd.Ctx         { return ctx.Ctx }
+func ProvideGogenCtx(ctx *Ctx) *gogencmd.Ctx         { return ctx.Ctx }
 func ProvideCtx(cmd *Command) *Ctx                   { return cmd.Ctx() }
 func ProvideTemplateFS(cmd *Command) http.FileSystem { return cmd.TemplateFS }
 func ProvideShouldRun(cmd *Command) ShouldRunFunc    { return cmd.ShouldRun }
@@ -16,7 +16,7 @@ func ProvideShouldRun(cmd *Command) ShouldRunFunc    { return cmd.ShouldRun }
 // Set contains providers for DI.
 var Set = wire.NewSet(
 	gogencmd.CtxSet,
-	ProvideGrapiCtx,
+	ProvideGogenCtx,
 	ProvideCtx,
 	ProvideTemplateFS,
 	ProvideShouldRun,

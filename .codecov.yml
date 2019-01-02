@@ -6,5 +6,5 @@ coverage:
       server:
         threshold: 1%
         paths:
-          - pkg/grapiserver/*
+          - pkg/gogenserver/*
     patch: off

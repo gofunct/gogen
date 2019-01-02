@@ -14,7 +14,7 @@ import (
 
 func newApp(command *Command) (*App, error) {
 	ctx := ProvideCtx(command)
-	gogencmdCtx := ProvideGrapiCtx(ctx)
+	gogencmdCtx := ProvideGogenCtx(ctx)
 	fs := gogencmd.ProvideFS(gogencmdCtx)
 	io := gogencmd.ProvideIO(gogencmdCtx)
 	ui := cli.UIInstance(io)

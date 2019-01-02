@@ -9,10 +9,10 @@ import (
 	{{.PbGo.PackageName}} "{{ .PbGo.PackagePath }}"
 )
 
-// {{.Go.ServerName}} is a composite interface of {{.PbGo.PackageName }}.{{.Go.ServerName}} and grapiserver.Server.
+// {{.Go.ServerName}} is a composite interface of {{.PbGo.PackageName }}.{{.Go.ServerName}} and gogenserver.Server.
 type {{.Go.ServerName}} interface {
 	{{.PbGo.PackageName }}.{{.Go.ServerName}}
-	grapiserver.Server
+	gogenserver.Server
 }
 
 // New{{.Go.ServerName}} creates a new {{.Go.ServerName}} instance.

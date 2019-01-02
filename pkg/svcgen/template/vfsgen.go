@@ -5,7 +5,7 @@ package main
 import (
 	"log"
 
-	"github.com/izumin5210/grapi/pkg/svcgen/template"
+	"github.com/gofunct/gogen/pkg/svcgen/template"
 	"github.com/shurcooL/vfsgen"
 )
 

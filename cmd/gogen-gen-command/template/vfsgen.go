@@ -7,7 +7,7 @@ import (
 
 	"github.com/shurcooL/vfsgen"
 
-	"github.com/izumin5210/grapi/cmd/grapi-gen-command/template"
+	"github.com/gofunct/gogen/cmd/gogen-gen-command/template"
 )
 
 func main() {

@@ -16,7 +16,7 @@ import (
 
 func NewApp(command *gencmd.Command) (*App, error) {
 	ctx := gencmd.ProvideCtx(command)
-	gogencmdCtx := gencmd.ProvideGrapiCtx(ctx)
+	gogencmdCtx := gencmd.ProvideGogenCtx(ctx)
 	config := gogencmd.ProvideProtocConfig(gogencmdCtx)
 	fs := gogencmd.ProvideFS(gogencmdCtx)
 	execInterface := gogencmd.ProvideExecer(gogencmdCtx)

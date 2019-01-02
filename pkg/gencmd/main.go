@@ -16,7 +16,7 @@ func New(
 	ctx.apply(opts)
 
 	rootCmd := &cobra.Command{
-		Use: "grapi-gen-" + name,
+		Use: "gogen-gen-" + name,
 	}
 
 	setGenerateCommand(name, rootCmd, generateCmd, ctx)

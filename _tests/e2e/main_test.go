@@ -151,7 +151,7 @@ func updateRun(t *testing.T, rootPath string, port int) {
 					case "New":
 						n.Args = append(n.Args, &ast.CallExpr{
 							Fun: &ast.SelectorExpr{
-								X:   ast.NewIdent("grapiserver"),
+								X:   ast.NewIdent("gogenserver"),
 								Sel: ast.NewIdent("WithGatewayAddr"),
 							},
 							Args: []ast.Expr{

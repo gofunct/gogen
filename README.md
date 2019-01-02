@@ -1,24 +1,26 @@
 # GoGen
 
-## Base Commands
+## gogen
 
 ```commandline
-A dev utitility tool for golang based projects
-
 Usage:
   gogen [command]
 
 Available Commands:
-  cobra       cobra cli opts
-  docker      docker opts
-  git         git opts
+  build       Build commands
+  destroy     Destroy an existing new code
+  generate    Generate a new code
   help        Help about any command
-  protoc      protoc opts
-  template    Template opts
+  init        Initialize a gogen application
+  protoc      Run protoc
+  version     Print the version information
 
 Flags:
-  -h, --help     help for gogen
-  -t, --toggle   Help message for toggle
+      --debug     Debug level output
+  -h, --help      help for gogen
+  -v, --verbose   Verbose level output
+
+Use "gogen [command] --help" for more information about a command.
 
 ```
 
