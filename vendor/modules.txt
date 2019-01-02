@@ -6,6 +6,8 @@ github.com/davecgh/go-spew/spew
 github.com/daviddengcn/go-colortext
 # github.com/fatih/color v1.7.0
 github.com/fatih/color
+# github.com/fsnotify/fsnotify v1.4.7
+github.com/fsnotify/fsnotify
 # github.com/gofunct/bingen v0.0.0-20190102020125-13eef7615a05
 github.com/gofunct/bingen
 github.com/gofunct/bingen/cmd
@@ -34,6 +36,17 @@ github.com/google/go-querystring/query
 # github.com/google/wire v0.2.0
 github.com/google/wire/cmd/wire
 github.com/google/wire/internal/wire
+# github.com/hashicorp/hcl v1.0.0
+github.com/hashicorp/hcl
+github.com/hashicorp/hcl/hcl/printer
+github.com/hashicorp/hcl/hcl/ast
+github.com/hashicorp/hcl/hcl/parser
+github.com/hashicorp/hcl/hcl/token
+github.com/hashicorp/hcl/json/parser
+github.com/hashicorp/hcl/hcl/scanner
+github.com/hashicorp/hcl/hcl/strconv
+github.com/hashicorp/hcl/json/scanner
+github.com/hashicorp/hcl/json/token
 # github.com/haya14busa/errorformat v0.0.0-20180607161917-689b7d67b7a8
 github.com/haya14busa/errorformat/fmts
 github.com/haya14busa/errorformat
@@ -63,6 +76,8 @@ github.com/kisielk/gotool
 github.com/kisielk/gotool/internal/load
 # github.com/kyokomi/emoji v2.0.0+incompatible
 github.com/kyokomi/emoji
+# github.com/magiconair/properties v1.8.0
+github.com/magiconair/properties
 # github.com/mattn/go-colorable v0.0.9
 github.com/mattn/go-colorable
 # github.com/mattn/go-isatty v0.0.4
@@ -73,6 +88,10 @@ github.com/mattn/go-shellwords
 github.com/mitchellh/gox
 # github.com/mitchellh/iochan v1.0.0
 github.com/mitchellh/iochan
+# github.com/mitchellh/mapstructure v1.1.2
+github.com/mitchellh/mapstructure
+# github.com/pelletier/go-toml v1.2.0
+github.com/pelletier/go-toml
 # github.com/pkg/errors v0.8.0
 github.com/pkg/errors
 # github.com/pmezard/go-difflib v1.0.0
@@ -80,10 +99,16 @@ github.com/pmezard/go-difflib/difflib
 # github.com/spf13/afero v1.2.0
 github.com/spf13/afero
 github.com/spf13/afero/mem
+# github.com/spf13/cast v1.3.0
+github.com/spf13/cast
 # github.com/spf13/cobra v0.0.3
 github.com/spf13/cobra
+# github.com/spf13/jwalterweatherman v1.0.0
+github.com/spf13/jwalterweatherman
 # github.com/spf13/pflag v1.0.3
 github.com/spf13/pflag
+# github.com/spf13/viper v1.3.1
+github.com/spf13/viper
 # github.com/srvc/wraperr v0.2.0
 github.com/srvc/wraperr/cmd/wraperr
 github.com/srvc/wraperr
