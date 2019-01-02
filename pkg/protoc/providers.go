@@ -25,7 +25,7 @@ var (
 	toolRepoMu sync.Mutex
 )
 
-func ProvideGexConfig(
+func ProvideBingenConfig(
 	fs afero.Fs,
 	execer exec.Interface,
 	io io.IO,
@@ -63,7 +63,7 @@ func ProvideToolRepository(binCfg *bingen.Config) (tool.Repository, error) {
 
 // WrapperSet is a provider set that includes gex things and Wrapper instance.
 var WrapperSet = wire.NewSet(
-	ProvideGexConfig,
+	ProvideBingenConfig,
 	ProvideToolRepository,
 	NewWrapper,
 )

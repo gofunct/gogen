@@ -14,8 +14,10 @@
 
 package gogen_util
 
-import "github.com/gofunct/gogen/cmd"
+import (
+	"github.com/gofunct/gogen/pkg/util"
+)
 
 func main() {
-	cmd.Execute()
+	util.Execute()
 }

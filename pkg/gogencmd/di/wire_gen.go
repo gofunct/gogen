@@ -48,7 +48,7 @@ func NewToolRepository(ctx *gogencmd.Ctx) (tool.Repository, error) {
 	execInterface := gogencmd.ProvideExecer(ctx)
 	io := gogencmd.ProvideIO(ctx)
 	rootDir := gogencmd.ProvideRootDir(ctx)
-	config := protoc.ProvideGexConfig(fs, execInterface, io, rootDir)
+	config := protoc.ProvideBingenConfig(fs, execInterface, io, rootDir)
 	repository, err := protoc.ProvideToolRepository(config)
 	if err != nil {
 		return nil, err
@@ -63,7 +63,7 @@ func NewProtocWrapper(ctx *gogencmd.Ctx) (protoc.Wrapper, error) {
 	io := gogencmd.ProvideIO(ctx)
 	ui := cli.UIInstance(io)
 	rootDir := gogencmd.ProvideRootDir(ctx)
-	bingenConfig := protoc.ProvideGexConfig(fs, execInterface, io, rootDir)
+	bingenConfig := protoc.ProvideBingenConfig(fs, execInterface, io, rootDir)
 	repository, err := protoc.ProvideToolRepository(bingenConfig)
 	if err != nil {
 		return nil, err
@@ -77,7 +77,7 @@ func NewInitializeProjectUsecase(ctx *gogencmd.Ctx) usecase.InitializeProjectUse
 	execInterface := gogencmd.ProvideExecer(ctx)
 	io := gogencmd.ProvideIO(ctx)
 	rootDir := gogencmd.ProvideRootDir(ctx)
-	config := protoc.ProvideGexConfig(fs, execInterface, io, rootDir)
+	config := protoc.ProvideBingenConfig(fs, execInterface, io, rootDir)
 	ui := cli.UIInstance(io)
 	generator := ProvideGenerator(ctx, ui)
 	initializeProjectUsecase := ProvideInitializeProjectUsecase(ctx, config, ui, generator)

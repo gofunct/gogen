@@ -23,7 +23,7 @@ func NewApp(command *gencmd.Command) (*App, error) {
 	io := gogencmd.ProvideIO(gogencmdCtx)
 	ui := cli.UIInstance(io)
 	rootDir := gogencmd.ProvideRootDir(gogencmdCtx)
-	bingenConfig := protoc.ProvideGexConfig(fs, execInterface, io, rootDir)
+	bingenConfig := protoc.ProvideBingenConfig(fs, execInterface, io, rootDir)
 	repository, err := protoc.ProvideToolRepository(bingenConfig)
 	if err != nil {
 		return nil, err
