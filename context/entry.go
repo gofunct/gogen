@@ -9,12 +9,12 @@ import (
 	"text/template"
 )
 
-type entry struct {
+type Entry struct {
 	Template *template.Template
 	Path     string
 }
 
-func (e *entry) Create(fs afero.Fs, params interface{}) error {
+func (e *Entry) Create(fs afero.Fs, params interface{}) error {
 	dir := filepath.Dir(e.Path)
 	if ok, err := afero.DirExists(fs, dir); err != nil {
 		return err

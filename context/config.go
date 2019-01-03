@@ -20,8 +20,6 @@ func NewConfig() *Config {
 	v.SetDefault("Build.Service", "example")
 	v.SetDefault("Build.Description", "the default gogen configuration settings!")
 	v.SetDefault("Build.Cloud", "Google")
-	v.SetDefault("Build.Revision", "")
-	v.SetDefault("Build.BuildDate", "")
 	v.SetDefault("Build.Dev", true)
 
 	return &Config{

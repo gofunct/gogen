@@ -48,9 +48,9 @@ func (c *Ctx) GetImportPath() string {
 	return pkg
 }
 
-func (c *Ctx) DefaultEntries(params *Params) []*entry {
+func (c *Ctx) DefaultEntries(params *Params) []*Entry {
 	root := c.GetRootDir()
-	return []*entry{
+	return []*Entry{
 		{Path: root.Join(".gitignore").String(), Template: templates.GitIgnoreTemplate()},
 		{Path: root.Join(".reviewdog.yml").String(), Template: templates.ReviewDogTemplate()},
 		{Path: root.Join(".travis.yml").String(), Template: templates.TravisTemplate()},
@@ -59,34 +59,6 @@ func (c *Ctx) DefaultEntries(params *Params) []*entry {
 		{Path: root.Join("pkg", params.Name, "config.go").String(), Template: templates.ConfigTemplate()},
 		{Path: root.Join("pkg", params.Name, "context.go").String(), Template: templates.ContextTemplate()},
 		{Path: root.Join("pkg", params.Name, "cmd", "cmd.go").String(), Template: templates.TemplateTemplate()},
-	}
-}
-
-type RunFunc func(ctx context.Context, program string, args ...string) error
-
-func (c *Ctx) GetRunFunc() RunFunc {
-	return func(ctx context.Context, program string, args ...string) error {
-		cmd := c.Exec.CommandContext(ctx, program, args...)
-		root := c.GetRootDir()
-
-		cmd.SetStdin(c.IO.In())
-		cmd.SetStdout(c.IO.Out())
-		cmd.SetStderr(c.IO.Err())
-		cmd.SetDir(root.String())
-		zap.L().Debug("exec command", zap.String("cmd", c.Build.AppName), zap.Strings("args", args), zap.Stringer("dir", root))
-		return cmd.Run()
-	}
-}
-
-type Params struct {
-	Name    string
-	Package string
-}
-
-func (c *Ctx) NewParams() *Params {
-	return &Params{
-		Name:    c.Build.AppName,
-		Package: c.GetImportPath(),
 	}
 }
 
@@ -146,4 +118,18 @@ func (c *Ctx) ParseEntries() error {
 		}
 	}
 	return nil
+}
+
+func (c *Ctx) GetRunFunc() RunFunc {
+	return func(ctx context.Context, program string, args ...string) error {
+		cmd := c.Exec.CommandContext(ctx, program, args...)
+		root := c.GetRootDir()
+
+		cmd.SetStdin(c.IO.In())
+		cmd.SetStdout(c.IO.Out())
+		cmd.SetStderr(c.IO.Err())
+		cmd.SetDir(root.String())
+		zap.L().Debug("exec command", zap.String("cmd", c.Build.AppName), zap.Strings("args", args), zap.Stringer("dir", root))
+		return cmd.Run()
+	}
 }

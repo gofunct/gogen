@@ -17,7 +17,7 @@ package cmd
 import (
 	"fmt"
 	"github.com/gofunct/common/files"
-	"github.com/gofunct/gogen/build"
+	"github.com/gofunct/gogen/exec"
 	"github.com/spf13/cobra"
 	"os"
 )
@@ -27,12 +27,8 @@ const (
 	version = "v0.1.1"
 )
 
-var (
-	revision, buildDate string
-)
-
 var RootCmd = &cobra.Command{
-	Use: "gogen",
+	Use:   "gogen",
 	Short: "command line tool generator",
 	Run: func(cmd *cobra.Command, args []string) {
 		if err := run(); err != nil {
@@ -55,12 +51,7 @@ func run() error {
 		return err
 	}
 
-	cmd := build.NewDefaultCliCommand(files.Path(wd), build.Build{
-		AppName:   appName,
-		Version:   version,
-		Revision:  revision,
-		BuildDate: buildDate,
-	})
+	cmd := exec.NewDefaultCliCommand(files.Path(wd))
 
 	return cmd.Execute()
 }
