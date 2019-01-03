@@ -1,15 +1,15 @@
 package protoc
 
 import (
-	"github.com/gofunct/common/cli"
+	"github.com/gofunct/common/files"
 	"github.com/gofunct/common/io"
 	"github.com/gofunct/common/logging"
 	"sync"
 
+	"github.com/gofunct/common/errors"
 	"github.com/google/wire"
 	"github.com/izumin5210/gex"
 	"github.com/izumin5210/gex/pkg/tool"
-	"github.com/pkg/errors"
 	"github.com/spf13/afero"
 	"go.uber.org/zap"
 	"k8s.io/utils/exec"
@@ -27,7 +27,7 @@ func ProvideGexConfig(
 	fs afero.Fs,
 	execer exec.Interface,
 	io io.IO,
-	rootDir cli.RootDir,
+	rootDir files.RootDir,
 ) *gex.Config {
 	gexCfgMu.Lock()
 	defer gexCfgMu.Unlock()

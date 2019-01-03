@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/pkg/errors"
+	"github.com/gofunct/common/errors"
 	"github.com/spf13/cobra"
 )
 

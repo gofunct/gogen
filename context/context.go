@@ -4,7 +4,6 @@ import (
 	"context"
 	"github.com/gofunct/common/files"
 	"github.com/gofunct/common/io"
-	"github.com/gofunct/gogen/templates"
 	"github.com/spf13/afero"
 	"go.uber.org/zap"
 	"k8s.io/utils/exec"
@@ -49,8 +48,9 @@ func (c *Ctx) GetImportPath() string {
 }
 
 func (c *Ctx) DefaultEntries(params *Params) []*Entry {
-	root := c.GetRootDir()
+	//root := c.GetRootDir()
 	return []*Entry{
+		/*
 		{Path: root.Join(".gitignore").String(), Template: templates.GitIgnoreTemplate()},
 		{Path: root.Join(".reviewdog.yml").String(), Template: templates.ReviewDogTemplate()},
 		{Path: root.Join(".travis.yml").String(), Template: templates.TravisTemplate()},
@@ -59,6 +59,7 @@ func (c *Ctx) DefaultEntries(params *Params) []*Entry {
 		{Path: root.Join("pkg", params.Name, "config.go").String(), Template: templates.ConfigTemplate()},
 		{Path: root.Join("pkg", params.Name, "context.go").String(), Template: templates.ContextTemplate()},
 		{Path: root.Join("pkg", params.Name, "cmd", "cmd.go").String(), Template: templates.TemplateTemplate()},
+		*/
 	}
 }
 

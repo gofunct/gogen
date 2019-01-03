@@ -1,10 +1,10 @@
 package script
 
 import (
+	"github.com/gofunct/common/errors"
 	"github.com/gofunct/common/executor"
 	"github.com/gofunct/common/files"
 	"github.com/gofunct/gogen/module"
-	"github.com/pkg/errors"
 	"github.com/spf13/afero"
 	"go.uber.org/zap"
 	"path/filepath"

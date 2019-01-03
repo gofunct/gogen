@@ -1,8 +1,7 @@
 package generator
 
 import (
-	""github.com/gofunct/common/ui""
-	"github.com/izumin5210/grapi/pkg/cli"
+	"github.com/gofunct/common/ui"
 )
 
 type status int
@@ -24,14 +23,16 @@ var (
 	}
 )
 
-func (s status) Fprint(ui ui.Menu, msg string) {
+func (s status) Fprint(ui ui.UI, msg string) {
 	switch s {
-	case statusCreate, statusForce, statusDelete:
-		ui.ItemSuccess(msg)
+	case statusCreate, statusForce:
+		ui.Success(msg)
+	case statusDelete:
+		ui.Warn(msg)
 	case statusConflicted:
-		ui.ItemFailure(msg)
+		ui.Error(msg)
 	default:
-		ui.ItemSkipped(msg)
+		ui.Info(msg)
 	}
 }
 

@@ -7,8 +7,7 @@ import (
 // Option configures a command context.
 type Option func(*Ctx)
 
-// WithGrapiCtx specifies a grapi command context.
-func WithGrapiCtx(gctx *gogen.Ctx) Option {
+func WithGogenCtx(gctx *gogen.Ctx) Option {
 	return func(ctx *Ctx) {
 		ctx.Ctx = gctx
 	}

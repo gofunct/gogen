@@ -22,11 +22,6 @@ import (
 	"os"
 )
 
-const (
-	appName = "gogen"
-	version = "v0.1.1"
-)
-
 var RootCmd = &cobra.Command{
 	Use:   "gogen",
 	Short: "command line tool generator",

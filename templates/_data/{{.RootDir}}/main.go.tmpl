@@ -1,0 +1,43 @@
+package main
+
+import (
+	"fmt"
+	"github.com/gofunct/common/files"
+	"os"
+
+	"github.com/gofunct/common/build"
+
+	"{{.Package}}/pkg/{{.Name}}/cmd"
+)
+
+const (
+	appName = "{{.Name}}"
+	version = "v0.0.1"
+)
+
+var (
+	revision, buildDate string
+)
+
+func main() {
+	if err := run(); err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
+}
+
+func run() error {
+	wd, err := os.Getwd()
+	if err != nil {
+		return err
+	}
+
+	cmd := cmd.NewDefault{{ToCamel .Name}}Command(files.Path(wd), build.Build{
+		AppName:   appName,
+		Version:   version,
+		Revision:  revision,
+		BuildDate: buildDate,
+	})
+
+	return cmd.Execute()
+}

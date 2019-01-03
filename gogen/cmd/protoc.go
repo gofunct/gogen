@@ -2,14 +2,13 @@ package cmd
 
 import (
 	"context"
-	"github.com/gofunct/common/gogencmd/di"
+	"github.com/gofunct/common/errors"
 	"github.com/gofunct/gogen/gogen"
-
-	"github.com/pkg/errors"
+	"github.com/gofunct/gogen/gogen/inject"
 	"github.com/spf13/cobra"
 )
 
-func newProtocCommand(ctx *gogen.Ctx) *cobra.Command {
+func NewProtocCommand(ctx *gogen.Ctx) *cobra.Command {
 	return &cobra.Command{
 		Use:           "protoc",
 		Short:         "Run protoc",
@@ -17,9 +16,9 @@ func newProtocCommand(ctx *gogen.Ctx) *cobra.Command {
 		SilenceUsage:  true,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if !ctx.IsInsideApp() {
-				return errors.New("protoc command should be execute inside a grapi application directory")
+				return errors.New("protoc command should be execute inside a gogen application directory")
 			}
-			protocw, err := di.NewProtocWrapper(ctx)
+			protocw, err := inject.NewProtocWrapper(ctx)
 			if err != nil {
 				return errors.WithStack(err)
 			}

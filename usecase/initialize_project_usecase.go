@@ -2,13 +2,13 @@ package usecase
 
 import (
 	"context"
+	"github.com/gofunct/common/errors"
+	"github.com/gofunct/common/ui"
 	"github.com/gofunct/gogen/module"
-	""github.com/gofunct/common/ui""
 	"github.com/izumin5210/gex"
-	"github.com/pkg/errors"
 )
 
-// InitializeProjectUsecase is an interface to create a new grapi project.
+// InitializeProjectUsecase is an interface to create a new project.
 type InitializeProjectUsecase interface {
 	Perform(rootDir string, cfg InitConfig) error
 	GenerateProject(rootDir, pkgName string) error
@@ -16,7 +16,7 @@ type InitializeProjectUsecase interface {
 }
 
 // NewInitializeProjectUsecase creates a new InitializeProjectUsecase instance.
-func NewInitializeProjectUsecase(ui ui.Menu, generator module.ProjectGenerator, gexCfg *gex.Config) InitializeProjectUsecase {
+func NewInitializeProjectUsecase(ui ui.UI, generator module.ProjectGenerator, gexCfg *gex.Config) InitializeProjectUsecase {
 	return &initializeProjectUsecase{
 		ui:        ui,
 		generator: generator,
@@ -25,13 +25,13 @@ func NewInitializeProjectUsecase(ui ui.Menu, generator module.ProjectGenerator, 
 }
 
 type initializeProjectUsecase struct {
-	ui        ui.Menu
+	ui        ui.UI
 	generator module.ProjectGenerator
 	gexCfg    *gex.Config
 }
 
 func (u *initializeProjectUsecase) Perform(rootDir string, cfg InitConfig) error {
-	u.ui.Section("Initialize project")
+	u.ui.Info("Initialize project")
 
 	var err error
 	err = u.GenerateProject(rootDir, cfg.Package)
@@ -39,7 +39,7 @@ func (u *initializeProjectUsecase) Perform(rootDir string, cfg InitConfig) error
 		return errors.Wrap(err, "failed to initialize project")
 	}
 
-	u.ui.Subsection("Install dependencies")
+	u.ui.Info("Install dependencies")
 	err = u.InstallDeps(rootDir, cfg)
 	if err != nil {
 		return errors.Wrap(err, "failed to execute `dep ensure`")

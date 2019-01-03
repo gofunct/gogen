@@ -3,12 +3,12 @@ package protoc
 import (
 	"context"
 	"github.com/gofunct/common/files"
-	""github.com/gofunct/common/ui""
+	"github.com/gofunct/common/ui"
 	"os"
 	"path/filepath"
 
+	"github.com/gofunct/common/errors"
 	"github.com/izumin5210/gex/pkg/tool"
-	"github.com/pkg/errors"
 	"github.com/spf13/afero"
 	"go.uber.org/zap"
 	"k8s.io/utils/exec"
@@ -22,14 +22,14 @@ type Wrapper interface {
 type wrapperImpl struct {
 	cfg      *Config
 	fs       afero.Fs
-	ui       ui.Menu
+	ui       ui.UI
 	execer   exec.Interface
 	toolRepo tool.Repository
 	rootDir  files.RootDir
 }
 
 // NewWrapper creates a new Wrapper instance.
-func NewWrapper(cfg *Config, fs afero.Fs, execer exec.Interface, ui ui.Menu, toolRepo tool.Repository, rootDir files.RootDir) Wrapper {
+func NewWrapper(cfg *Config, fs afero.Fs, execer exec.Interface, ui ui.UI, toolRepo tool.Repository, rootDir files.RootDir) Wrapper {
 	return &wrapperImpl{
 		cfg:      cfg,
 		fs:       fs,
@@ -70,11 +70,11 @@ func (e *wrapperImpl) execProtocAll(ctx context.Context) error {
 		err = e.execProtoc(ctx, path)
 		relPath, _ := filepath.Rel(e.rootDir.String(), path)
 		if err == nil {
-			e.ui.ItemSuccess(relPath)
+			e.ui.Success(relPath)
 		} else {
 			zap.L().Error("failed to execute protoc", zap.Error(err))
 			errs = append(errs, err)
-			e.ui.ItemFailure(relPath, err)
+			e.ui.Error(relPath + err.Error())
 		}
 	}
 

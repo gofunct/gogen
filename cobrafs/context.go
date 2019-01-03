@@ -1,8 +1,8 @@
 package cobrafs
 
 import (
+	"github.com/gofunct/common/errors"
 	"github.com/gofunct/gogen/gogen"
-	"github.com/pkg/errors"
 )
 
 func defaultCtx() *Ctx {

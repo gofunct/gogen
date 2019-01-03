@@ -39,7 +39,6 @@ func NewCliCommand(ctx *context.Ctx) *cobra.Command {
 	cmd.AddCommand(
 		NewInitCommand(ctx),
 		NewVersionCommand(ctx.IO, ctx.Build),
-		NewUploadCommand(ctx.Build),
 
 		//TODO: Add command: gcloud storage download
 		//TODO: Add command: gcloud kubernetes manifest deployment

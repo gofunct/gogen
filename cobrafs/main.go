@@ -1,7 +1,7 @@
 package cobrafs
 
 import (
-	"github.com/pkg/errors"
+	"github.com/gofunct/common/errors"
 	"github.com/spf13/cobra"
 )
 
@@ -38,7 +38,7 @@ func setGenerateCommand(name string, rootCmd *cobra.Command, cmd *Command, ctx *
 			return errors.WithStack(err)
 		}
 
-		app.UI.UI.Info("Generate " + name)
+		app.UI.Info("Generate " + name)
 		params, err := cmd.BuildParams(cmd, args)
 		if err != nil {
 			return errors.WithStack(err)
@@ -73,7 +73,7 @@ func setDestroyCommand(name string, rootCmd *cobra.Command, cmd *Command, ctx *C
 			return errors.WithStack(err)
 		}
 
-		app.UI.UI.Info("Destroy " + name)
+		app.UI.Info("Destroy " + name)
 		params, err := cmd.BuildParams(cmd, args)
 		if err != nil {
 			return errors.WithStack(err)

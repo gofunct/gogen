@@ -2,6 +2,10 @@ package cmd
 
 import (
 	"context"
+	"github.com/gofunct/common/executor"
+	"github.com/gofunct/common/files"
+	"github.com/gofunct/gogen/gogen"
+	"github.com/gofunct/gogen/gogen/inject"
 	"strings"
 	"sync"
 
@@ -9,10 +13,6 @@ import (
 	"go.uber.org/zap"
 
 	"github.com/izumin5210/gex/pkg/tool"
-	"github.com/izumin5210/grapi/pkg/excmd"
-	"github.com/izumin5210/grapi/pkg/gogen"
-	"github.com/izumin5210/grapi/pkg/gogen/di"
-	"github.com/izumin5210/grapi/pkg/gogen/util/fs"
 )
 
 func newGenerateCommands(ctx *gogen.Ctx) (cmds []*cobra.Command) {
@@ -37,13 +37,13 @@ func newGenerateCommands(ctx *gogen.Ctx) (cmds []*cobra.Command) {
 
 	go func() {
 		defer wg.Done()
-		execs = fs.ListExecutableWithPrefix(ctx.FS, "grapi-gen-")
+		execs = files.ListExecutableWithPrefix(ctx.FS, "gogen-")
 	}()
 
 	go func() {
 		defer wg.Done()
 
-		toolRepo, err := di.NewToolRepository(ctx)
+		toolRepo, err := inject.NewToolRepository(ctx)
 		if err != nil {
 			zap.L().Debug("failed to initialize tools repository", zap.Error(err))
 			return
@@ -75,8 +75,8 @@ func newGenerateCommands(ctx *gogen.Ctx) (cmds []*cobra.Command) {
 			continue
 		}
 		cmdNames[exec] = struct{}{}
-		gCmd.AddCommand(newGenerateCommandByExec(di.NewCommandExecutor(ctx), exec, "generate"))
-		dCmd.AddCommand(newGenerateCommandByExec(di.NewCommandExecutor(ctx), exec, "destroy"))
+		gCmd.AddCommand(newGenerateCommandByExec(inject.NewCommandExecutor(ctx), exec, "generate"))
+		dCmd.AddCommand(newGenerateCommandByExec(inject.NewCommandExecutor(ctx), exec, "destroy"))
 	}
 
 	cmds = append(cmds, gCmd, dCmd)
@@ -86,7 +86,7 @@ func newGenerateCommands(ctx *gogen.Ctx) (cmds []*cobra.Command) {
 
 func newGenerateCommandByTool(repo tool.Repository, t tool.Tool, subCmd string) *cobra.Command {
 	cmd := &cobra.Command{
-		Use:  strings.TrimPrefix(t.Name(), "grapi-gen-"),
+		Use:  strings.TrimPrefix(t.Name(), "gogen-"),
 		Args: cobra.ArbitraryArgs,
 		RunE: func(_ *cobra.Command, args []string) error {
 			return repo.Run(context.TODO(), t.Name(), append([]string{subCmd}, args...)...)
@@ -98,17 +98,17 @@ func newGenerateCommandByTool(repo tool.Repository, t tool.Tool, subCmd string) 
 	return cmd
 }
 
-func newGenerateCommandByExec(execer excmd.Executor, exec, subCmd string) *cobra.Command {
+func newGenerateCommandByExec(execer executor.Executor, exec, subCmd string) *cobra.Command {
 	cmd := &cobra.Command{
-		Use:  strings.TrimPrefix(exec, "grapi-gen-"),
+		Use:  strings.TrimPrefix(exec, "gogen-"),
 		Args: cobra.ArbitraryArgs,
 		RunE: func(_ *cobra.Command, args []string) error {
-			_, err := execer.Exec(context.TODO(), exec, excmd.WithArgs(append([]string{subCmd}, args...)...), excmd.WithIOConnected())
+			_, err := execer.Exec(context.TODO(), exec, executor.WithArgs(append([]string{subCmd}, args...)...), executor.WithIOConnected())
 			return err
 		},
 	}
 	cmd.SetUsageFunc(func(*cobra.Command) error {
-		_, err := execer.Exec(context.TODO(), exec, excmd.WithArgs(subCmd, "--help"), excmd.WithIOConnected())
+		_, err := execer.Exec(context.TODO(), exec, executor.WithArgs(subCmd, "--help"), executor.WithIOConnected())
 		return err
 	})
 	return cmd

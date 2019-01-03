@@ -39,7 +39,6 @@ var (
 	}()
 )
 
-
 // LoggingMode represents a logging configuration specification.
 type LoggingMode int
 

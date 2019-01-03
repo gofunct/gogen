@@ -1,11 +1,11 @@
 package generator
 
 import (
-	"github.com/gofunct/common/gogencmd/util/fs"
+	"github.com/gofunct/common/errors"
+	"github.com/gofunct/common/files"
+	"github.com/gofunct/common/ui"
 	"github.com/gofunct/gogen/module"
 	"github.com/gofunct/gogen/module/generator/template"
-	""github.com/gofunct/common/ui""
-	"github.com/pkg/errors"
 	"github.com/spf13/afero"
 )
 
@@ -13,20 +13,20 @@ type projectGenerator struct {
 	baseGenerator
 }
 
-func newProjectGenerator(fs afero.Fs, ui ui.Menu) module.ProjectGenerator {
+func newProjectGenerator(fs afero.Fs, ui ui.UI) module.ProjectGenerator {
 	return &projectGenerator{
 		baseGenerator: newBaseGenerator(template.Init, fs, ui),
 	}
 }
 
 func (g *projectGenerator) GenerateProject(rootDir, pkgName string) error {
-	importPath, err := fs.GetImportPath(rootDir)
+	importPath, err := files.GetImportPath(rootDir)
 	if err != nil {
 		return errors.WithStack(err)
 	}
 
 	if pkgName == "" {
-		pkgName, err = fs.GetPackageName(rootDir)
+		pkgName, err = files.GetPackageName(rootDir)
 		if err != nil {
 			return errors.Wrap(err, "failed to decide a package name")
 		}

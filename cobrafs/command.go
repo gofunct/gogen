@@ -3,7 +3,7 @@ package cobrafs
 import (
 	"net/http"
 
-	"github.com/pkg/errors"
+	"github.com/gofunct/common/errors"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )
@@ -61,7 +61,7 @@ func (c *Command) newCobraCommand() *cobra.Command {
 		Args:    c.Args,
 		PreRunE: func(_ *cobra.Command, args []string) error {
 			if c.ShouldInsideApp && !c.Ctx().IsInsideApp() {
-				return errors.New("should execute inside grapi project")
+				return errors.New("should execute inside project")
 			}
 			if c.PreRun != nil {
 				err := c.PreRun(c, args)
@@ -75,7 +75,7 @@ func (c *Command) newCobraCommand() *cobra.Command {
 	if c.PostRun != nil {
 		cc.PostRunE = func(_ *cobra.Command, args []string) error { return c.PostRun(c, args) }
 	}
-	cc.PersistentFlags().AddFlag(c.Flags().)
+	cc.PersistentFlags().AddFlagSet(c.Flags())
 	return cc
 }
 

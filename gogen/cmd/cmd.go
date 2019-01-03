@@ -1,12 +1,13 @@
 package cmd
 
 import (
+	"github.com/gofunct/common/errors"
 	"github.com/gofunct/common/io"
 	"github.com/gofunct/common/logging"
 	"github.com/gofunct/gogen/exec"
 	"github.com/gofunct/gogen/gogen"
-	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
+	"github.com/gofunct/gogen/gocloud"
 )
 
 func NewGogenCommand(ctx *gogen.Ctx) *cobra.Command {
@@ -28,13 +29,14 @@ func NewGogenCommand(ctx *gogen.Ctx) *cobra.Command {
 	logging.AddLoggingFlags(cmd)
 
 	cmd.AddCommand(
-		newInitCommand(ctx),
-		newProtocCommand(ctx),
-		newBuildCommand(ctx),
+		NewInitCommand(ctx),
+		NewProtocCommand(ctx),
+		NewBuildCommand(ctx),
 		exec.NewVersionCommand(ctx.IO, ctx.Build),
+		gocloud.NewGoCloudCommand(ctx.Viper),
 	)
 	cmd.AddCommand(newGenerateCommands(ctx)...)
-	cmd.AddCommand(newUserDefinedCommands(ctx)...)
+	cmd.AddCommand(NewUserDefinedCommands(ctx)...)
 
 	return cmd
 }

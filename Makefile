@@ -59,8 +59,7 @@ ifdef CI
 	curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
 endif
 	dep ensure -v -vendor-only
-	@go get github.com/gofunct/bingen
-	bingen --build --verbose
+	gex --build --verbose
 
 .PHONY: clean
 clean: ## clean bin
@@ -73,9 +72,9 @@ gen:## go generate
 .PHONY: lint
 lint: ## lint
 ifdef CI
-	bingen reviewdog -reporter=github-pr-review
+	gex reviewdog -reporter=github-pr-review
 else
-	bingen reviewdog -diff="git diff master"
+	gex reviewdog -diff="git diff master"
 endif
 
 .PHONY: test
@@ -99,7 +98,7 @@ packages: $(PACKAGES) ## packages
 install: ## go install all programs
 	go install ./...
 
-format: ## go install all programs
+fmt: ## go install all programs
 	go fmt ./...
 
 help: ## help

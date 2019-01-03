@@ -2,10 +2,11 @@ package script
 
 import (
 	"context"
+	"github.com/gofunct/common/files"
 	"path/filepath"
 
+	"github.com/gofunct/common/errors"
 	"github.com/gofunct/common/executor"
-	"github.com/pkg/errors"
 	"github.com/spf13/afero"
 	"go.uber.org/zap"
 )
@@ -24,7 +25,7 @@ func (s *script) Name() string {
 
 func (s *script) Build(args ...string) error {
 	zap.L().Debug("build script", zap.String("name", s.name), zap.String("bin", s.binPath), zap.Strings("srcs", s.srcPaths))
-	err := fs.CreateDirIfNotExists(s.fs, filepath.Dir(s.binPath))
+	err := files.CreateDirIfNotExists(s.fs, filepath.Dir(s.binPath))
 	if err != nil {
 		return errors.WithStack(err)
 	}

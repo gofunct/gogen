@@ -1,18 +1,15 @@
 package generator
 
 import (
-	""github.com/gofunct/common/ui""
+	"github.com/gofunct/common/files"
+	"github.com/gofunct/common/ui"
 	"path/filepath"
 	"sort"
 	"strings"
 
-	assets "github.com/jessevdk/go-assets"
-	"github.com/pkg/errors"
+	"github.com/gofunct/common/errors"
+	"github.com/jessevdk/go-assets"
 	"github.com/spf13/afero"
-	"go.uber.org/zap"
-
-	"github.com/izumin5210/grapi/pkg/cli"
-	"github.com/izumin5210/grapi/pkg/grapicmd/util/fs"
 )
 
 type baseGenerator interface {
@@ -20,7 +17,7 @@ type baseGenerator interface {
 	Destroy(dir string, data interface{}) error
 }
 
-func newBaseGenerator(tmplFs *assets.FileSystem, fs afero.Fs, ui ui.Menu) baseGenerator {
+func newBaseGenerator(tmplFs *assets.FileSystem, fs afero.Fs, ui ui.UI) baseGenerator {
 	return &baseGeneratorImpl{
 		tmplFs: tmplFs,
 		fs:     fs,
@@ -31,7 +28,7 @@ func newBaseGenerator(tmplFs *assets.FileSystem, fs afero.Fs, ui ui.Menu) baseGe
 type baseGeneratorImpl struct {
 	tmplFs *assets.FileSystem
 	fs     afero.Fs
-	ui     ui.Menu
+	ui     ui.UI
 }
 
 type generationConfig struct {
@@ -44,7 +41,7 @@ func (g *baseGeneratorImpl) Generate(dir string, data interface{}, genCfg genera
 			continue
 		}
 		entry := g.tmplFs.Files[tmplPath]
-		path, err := TemplateString(strings.TrimSuffix(tmplPath, ".tmpl")).Compile(data)
+		path, err := files.TemplateString(strings.TrimSuffix(tmplPath, ".tmpl")).Compile(data)
 		if err != nil {
 			return errors.Wrapf(err, "failed to parse path: %s", path)
 		}
@@ -52,12 +49,12 @@ func (g *baseGeneratorImpl) Generate(dir string, data interface{}, genCfg genera
 		dirPath := filepath.Dir(absPath)
 
 		// create directory if not exists
-		if err := fs.CreateDirIfNotExists(g.fs, dirPath); err != nil {
+		if err := files.CreateDirIfNotExists(g.fs, dirPath); err != nil {
 			return errors.WithStack(err)
 		}
 
 		// generate content
-		body, err := TemplateString(string(entry.Data)).Compile(data)
+		body, err := files.TemplateString(string(entry.Data)).Compile(data)
 		if err != nil {
 			return errors.Wrapf(err, "failed to generate %s", path)
 		}
@@ -77,12 +74,15 @@ func (g *baseGeneratorImpl) Generate(dir string, data interface{}, genCfg genera
 				st = statusIdentical
 			} else {
 				st = statusSkipped
-				g.ui.ItemFailure(path[1:] + " is conflicted.")
-				if ok, err := g.ui.Confirm("Overwite it?"); err != nil {
-					zap.L().Error("failed to confirm to apply", zap.Error(err))
-					return errors.WithStack(err)
-				} else if ok {
-					st = statusCreate
+				g.ui.Error(path[1:] + " is conflicted.")
+				res := g.ui.Ask("Overwite it?")
+
+				if strings.Contains(res, "n") {
+					st = statusSkipped
+				} else {
+					if strings.Contains(res, "n") {
+						st = statusCreate
+					}
 				}
 			}
 		}
@@ -103,7 +103,7 @@ func (g *baseGeneratorImpl) Generate(dir string, data interface{}, genCfg genera
 
 func (g *baseGeneratorImpl) Destroy(dir string, data interface{}) error {
 	for _, tmplPath := range g.sortedEntryPaths() {
-		path, err := TemplateString(strings.TrimSuffix(tmplPath, ".tmpl")).Compile(data)
+		path, err := files.TemplateString(strings.TrimSuffix(tmplPath, ".tmpl")).Compile(data)
 		if err != nil {
 			return errors.Wrapf(err, "failed to parse path: %s", path)
 		}
@@ -111,12 +111,12 @@ func (g *baseGeneratorImpl) Destroy(dir string, data interface{}) error {
 
 		st := statusSkipped
 		if ok, err := afero.Exists(g.fs, absPath); err != nil {
-			g.ui.ItemFailure("failed to get " + path[1:])
+			g.ui.Error("failed to get " + path[1:])
 			return errors.WithStack(err)
 		} else if ok {
 			err = g.fs.Remove(absPath)
 			if err != nil {
-				g.ui.ItemFailure("failed to remove " + path[1:])
+				g.ui.Error("failed to remove " + path[1:])
 				return errors.WithStack(err)
 			}
 			st = statusDelete
@@ -130,7 +130,7 @@ func (g *baseGeneratorImpl) Destroy(dir string, data interface{}) error {
 			if r, err := afero.Glob(g.fs, filepath.Join(absDirPath, "*")); err == nil && len(r) == 0 {
 				err = g.fs.Remove(absDirPath)
 				if err != nil {
-					g.ui.ItemFailure("failed to remove " + dirPath[1:])
+					g.ui.Error("failed to remove " + dirPath[1:])
 					return errors.Wrapf(err, "failed to remove %q", dirPath[1:])
 				}
 				statusDelete.Fprint(g.ui, dirPath[1:])

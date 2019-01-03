@@ -2,20 +2,20 @@ package cmd
 
 import (
 	"github.com/gofunct/common/errors"
-	"github.com/gofunct/common/gogencmd/di"
 	"github.com/gofunct/gogen/gogen"
+	"github.com/gofunct/gogen/gogen/inject"
 	"github.com/gofunct/gogen/usecase"
 	"github.com/spf13/cobra"
 	"go.uber.org/zap"
 	"path/filepath"
 )
 
-func newInitCommand(ctx *gogen.Ctx) *cobra.Command {
+func NewInitCommand(ctx *gogen.Ctx) *cobra.Command {
 	var cfg usecase.InitConfig
 
 	cmd := &cobra.Command{
 		Use:           "init [name]",
-		Short:         "Initialize a grapi application",
+		Short:         "Initialize a gogen application",
 		SilenceErrors: true,
 		SilenceUsage:  true,
 		Args:          cobra.ExactArgs(1),
@@ -26,14 +26,14 @@ func newInitCommand(ctx *gogen.Ctx) *cobra.Command {
 			}
 			zap.L().Debug("parseInitArgs", zap.String("root", root))
 
-			return errors.WithStack(di.NewInitializeProjectUsecase(ctx).Perform(root, cfg))
+			return errors.WithStack(inject.NewInitializeProjectUsecase(ctx).Perform(root, cfg))
 		},
 	}
 
-	cmd.PersistentFlags().StringVar(&cfg.Revision, "revision", "", "Specify grapi revision")
-	cmd.PersistentFlags().StringVar(&cfg.Branch, "branch", "", "Specify grapi branch")
-	cmd.PersistentFlags().StringVar(&cfg.Version, "version", ctx.Build.Version, "Specify grapi version")
-	cmd.PersistentFlags().BoolVar(&cfg.HEAD, "HEAD", false, "Use HEAD grapi")
+	cmd.PersistentFlags().StringVar(&cfg.Revision, "revision", "", "Specify gogen revision")
+	cmd.PersistentFlags().StringVar(&cfg.Branch, "branch", "", "Specify gogen branch")
+	cmd.PersistentFlags().StringVar(&cfg.Version, "version", ctx.Build.Version, "Specify gogen version")
+	cmd.PersistentFlags().BoolVar(&cfg.HEAD, "HEAD", false, "Use HEAD gogen")
 	cmd.PersistentFlags().StringVarP(&cfg.Package, "package", "p", "", `Package name of the application(default: "<parent_package_or_username>.<app_name>")`)
 
 	return cmd

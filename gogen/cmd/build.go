@@ -1,13 +1,13 @@
 package cmd
 
 import (
-	"github.com/gofunct/common/gogencmd/di"
+	"github.com/gofunct/common/errors"
 	"github.com/gofunct/gogen/gogen"
-	"github.com/pkg/errors"
+	"github.com/gofunct/gogen/gogen/inject"
 	"github.com/spf13/cobra"
 )
 
-func newBuildCommand(ctx *gogen.Ctx) *cobra.Command {
+func NewBuildCommand(ctx *gogen.Ctx) *cobra.Command {
 	return &cobra.Command{
 		Use:           "build [TARGET]... [-- BUILD_OPTIONS]",
 		Short:         "Build commands",
@@ -24,8 +24,8 @@ func newBuildCommand(ctx *gogen.Ctx) *cobra.Command {
 			}
 			isAll := len(args) == 0
 
-			scriptLoader := di.NewScriptLoader(ctx)
-			ui := di.NewUI(ctx)
+			scriptLoader := inject.NewScriptLoader(ctx)
+			ui := inject.NewUI(ctx)
 
 			err := scriptLoader.Load(ctx.RootDir.Join("cmd").String())
 			if err != nil {
@@ -35,7 +35,7 @@ func newBuildCommand(ctx *gogen.Ctx) *cobra.Command {
 			for _, name := range scriptLoader.Names() {
 				script, ok := scriptLoader.Get(name)
 				if ok && (isAll || nameSet[script.Name()]) {
-					ui.Subsection("Building " + script.Name())
+					ui.Info("Building " + script.Name())
 					err := script.Build(args...)
 					if err != nil {
 						return errors.WithStack(err)

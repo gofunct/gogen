@@ -8,9 +8,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/pkg/errors"
+	"github.com/gofunct/common/errors"
 	"github.com/spf13/afero"
-	"go.uber.org/zap"
 )
 
 type Generator interface {
@@ -18,13 +17,7 @@ type Generator interface {
 	Destroy(params interface{}) error
 }
 
-func NewGenerator(
-	fs afero.Fs,
-	ui ui.Messenger,
-	rootDir files.RootDir,
-	templateFS http.FileSystem,
-	shouldRunFunc ShouldRunFunc,
-) Generator {
+func NewGenerator(fs afero.Fs, ui ui.UI, rootDir files.RootDir, templateFS http.FileSystem, shouldRunFunc ShouldRunFunc) Generator {
 	return &generatorImpl{
 		fs:            fs,
 		ui:            ui,
@@ -36,7 +29,7 @@ func NewGenerator(
 
 type generatorImpl struct {
 	fs afero.Fs
-	ui ui.Messenger
+	ui ui.UI
 
 	rootDir files.RootDir
 
@@ -52,19 +45,19 @@ func (g *generatorImpl) Generate(params interface{}) error {
 
 	for _, e := range entries {
 		if ok, err := g.shouldRun(e); err != nil {
-			g.ui.UI.UI.Error(e.Path[1:])
+			g.ui.Error(e.Path[1:])
 			return errors.WithStack(err)
 		} else if !ok {
-			g.ui.UI.UI.Info(e.Path[1:])
+			g.ui.Info(e.Path[1:])
 			continue
 		}
 
 		err := g.writeFile(e)
 		if err != nil {
-			g.ui.UI.UI.Error(e.Path[1:])
+			g.ui.Error(e.Path[1:])
 			return errors.WithStack(err)
 		}
-		g.ui.UI.UI.Success(e.Path[1:])
+		g.ui.Success(e.Path[1:])
 	}
 
 	return nil
@@ -77,26 +70,26 @@ func (g *generatorImpl) Destroy(params interface{}) error {
 	}
 
 	for _, tmplPath := range tmplPaths {
-		path, err := TemplateString(strings.TrimSuffix(tmplPath, ".tmpl")).Compile(params)
+		path, err := files.TemplateString(strings.TrimSuffix(tmplPath, ".tmpl")).Compile(params)
 		if err != nil {
 			return errors.Wrapf(err, "failed to parse path: %s", tmplPath)
 		}
 
 		absPath := g.rootDir.Join(path).String()
 		if ok, err := afero.Exists(g.fs, absPath); err != nil {
-			g.ui.UI.Error(path)
+			g.ui.Error(path)
 			return errors.WithStack(err)
 		} else if !ok {
-			g.ui.UI.Success(path)
+			g.ui.Success(path)
 			continue
 		}
 
 		err = g.fs.Remove(absPath)
 		if err != nil {
-			g.ui.UI.Error(path)
+			g.ui.Error(path)
 			return errors.WithStack(err)
 		}
-		g.ui.UI.Success(path)
+		g.ui.Success(path)
 	}
 
 	return nil
@@ -111,7 +104,7 @@ func (g *generatorImpl) listEntries(params interface{}) ([]*Entry, error) {
 	entries := make([]*Entry, 0, len(tmplPaths))
 
 	for _, tmplPath := range tmplPaths {
-		path, err := TemplateString(strings.TrimSuffix(tmplPath, ".tmpl")).Compile(params)
+		path, err := files.TemplateString(strings.TrimSuffix(tmplPath, ".tmpl")).Compile(params)
 		if err != nil {
 			return nil, errors.Wrapf(err, "failed to parse path: %s", tmplPath)
 		}
@@ -121,7 +114,7 @@ func (g *generatorImpl) listEntries(params interface{}) ([]*Entry, error) {
 			return nil, errors.Wrapf(err, "failed to read template: %s", tmplPath)
 		}
 
-		body, err := TemplateString(string(data)).Compile(params)
+		body, err := files.TemplateString(string(data)).Compile(params)
 		if err != nil {
 			return nil, errors.Wrapf(err, "failed to compile temlpate: %s, %v", tmplPath, params)
 		}
@@ -173,14 +166,10 @@ func (g *generatorImpl) shouldRun(e *Entry) (bool, error) {
 		return false, nil
 	}
 
-	g.ui.UI.Error(e.Path[1:] + " is conflicted.")
+	g.ui.Error(e.Path[1:] + " is conflicted.")
 	var res string
 
-	if res, err = g.ui.UI.Ask("Overwite it?", " "); err != nil {
-		zap.L().Error("failed to confirm to apply", zap.Error(err))
-		return false, errors.WithStack(err)
-	}
-
+	res = g.ui.Ask("Overwite it?")
 	if strings.Contains(res, "y") {
 		return true, nil
 

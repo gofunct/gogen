@@ -7,9 +7,9 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/gofunct/common/errors"
 	"github.com/gofunct/gogen/protoc"
 	"github.com/google/wire"
-	"github.com/pkg/errors"
 	"github.com/spf13/afero"
 	"github.com/spf13/viper"
 	"go.uber.org/zap"
@@ -34,7 +34,7 @@ type Ctx struct {
 // Config stores general setting params and provides accessors for them.
 type Config struct {
 	Package string
-	Grapi   struct {
+	Gogen   struct {
 		ServerDir string
 	}
 }
@@ -65,7 +65,7 @@ func (c *Ctx) Init() error {
 	}
 
 	if c.Build.AppName == "" {
-		c.Build.AppName = "grapi"
+		c.Build.AppName = "gogen"
 	}
 
 	return errors.WithStack(c.loadConfig())
@@ -76,17 +76,26 @@ func (c *Ctx) loadConfig() error {
 	for dir := c.RootDir.String(); dir != "/"; dir = filepath.Dir(dir) {
 		c.Viper.AddConfigPath(dir)
 	}
+	c.Viper.AutomaticEnv()
 
-	err := c.Viper.ReadInConfig()
-	if err != nil {
-		zap.L().Info("failed to find config file", zap.Error(err))
-		return nil
+	// If a config file is found, read it in.
+	if err := c.Viper.ReadInConfig(); err != nil {
+		zap.L().Info("failed to find config file, writing defaults....", zap.Error(err))
+		if err = c.Viper.WriteConfigAs(c.Build.AppName + ".yaml"); err != nil {
+			return err
+		}
+
+	} else {
+		zap.L().Info("Using config file:", zap.String("config", c.Viper.ConfigFileUsed()))
+		if err = c.Viper.WriteConfig(); err != nil {
+			return err
+		}
 	}
 
 	c.insideApp = true
 	c.RootDir = files.RootDir{files.Path(filepath.Dir(c.Viper.ConfigFileUsed()))}
 
-	err = c.Viper.Unmarshal(&c.Config)
+	err := c.Viper.Unmarshal(&c.Config)
 	if err != nil {
 		zap.L().Warn("failed to parse config", zap.Error(err))
 		return errors.WithStack(err)

@@ -1,20 +1,20 @@
 package cmd
 
 import (
-	"github.com/gofunct/common/gogencmd/di"
+	"github.com/gofunct/common/errors"
+	"github.com/gofunct/common/ui"
 	"github.com/gofunct/gogen/gogen"
+	"github.com/gofunct/gogen/gogen/inject"
 	"github.com/gofunct/gogen/module"
-	""github.com/gofunct/common/ui""
-	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 )
 
-func newUserDefinedCommands(ctx *gogen.Ctx) (cmds []*cobra.Command) {
+func NewUserDefinedCommands(ctx *gogen.Ctx) (cmds []*cobra.Command) {
 	if !ctx.IsInsideApp() {
 		return
 	}
 
-	scriptLoader := di.NewScriptLoader(ctx)
+	scriptLoader := inject.NewScriptLoader(ctx)
 
 	err := scriptLoader.Load(ctx.RootDir.Join("cmd").String())
 	if err != nil {
@@ -22,16 +22,16 @@ func newUserDefinedCommands(ctx *gogen.Ctx) (cmds []*cobra.Command) {
 		return
 	}
 
-	ui := di.NewUI(ctx)
+	ui := inject.NewUI(ctx)
 
 	for _, name := range scriptLoader.Names() {
-		cmds = append(cmds, newUserDefinedCommand(ui, scriptLoader, name))
+		cmds = append(cmds, NewUserDefinedCommand(ui, scriptLoader, name))
 	}
 
 	return
 }
 
-func newUserDefinedCommand(ui ui.Menu, scriptLoader module.ScriptLoader, name string) *cobra.Command {
+func NewUserDefinedCommand(ui ui.UI, scriptLoader module.ScriptLoader, name string) *cobra.Command {
 	return &cobra.Command{
 		Use:           name + " [-- BUILD_OPTIONS] [-- RUN_ARGS]",
 		SilenceErrors: true,
@@ -58,14 +58,13 @@ func newUserDefinedCommand(ui ui.Menu, scriptLoader module.ScriptLoader, name st
 				runArgs = args[pos+1:]
 			}
 
-			ui.Section(script.Name())
-			ui.Subsection("Building...")
+			ui.Info("Building...")
 			err = errors.WithStack(script.Build(buildArgs...))
 			if err != nil {
 				return
 			}
 
-			ui.Subsection("Starting...")
+			ui.Info("Starting...")
 			return errors.WithStack(script.Run(runArgs...))
 		},
 	}
