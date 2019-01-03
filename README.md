@@ -1,30 +1,10 @@
-# GoGen
+# ![](https://github.com/gofunct/common/blob/master/logo/dark_logo_transparent_background.png?raw=true) GoGen 
 
 **A utility for generating boilerplate code for cli tools that integrate with cloud providers**
 
 **by: Coleman Word**
 
 ## Gogen Commands
-
-### `make help`
-
-```commandline
-make [command]
-
-all                            generate all bins
-clean                          clean bin
-cover                          test coverage
-fmt                            go install all programs
-gen                            go generate
-help                           help
-install                        go install all programs
-lint                           lint
-packages                       packages
-setup                          setup
-test                           test all
-
-
-```
 
 ### `gogen`
 
@@ -52,11 +32,50 @@ Use "gogen [command] --help" for more information about a command.
 
 ```
 
-### `gogen version`
+## Project Generation Features
 
-```commandline
-gogen v0.1.1 (go1.11.4 darwin/amd64)
-```
+- [x] Generate fully functional grpc cloud service with one command(include grpc-json gateway)
+- [x] OpenCensus Tracing
+- [x] StackDriver Monitoring
+- [x] Local Deployment
+- [x] Gcloud Kubernetes Deployment
+- [x] Gcloud AppEngine Deployment
+- [x] AWS Deployment
+- [x] Cobra cli base
+- [x] Wlog user interface
+- [x] Local Configuration
+- [ ] Etcd Configuration
+- [x] Runtime Variable Configuration
+- [ ] Gcloud Kubernetes Deployment & manifest
+- [x] Gcloud CloudSql
+- [x] Gcloud Authorization
+- [x] Gcloud Storage
+- [x] Terraform
+- [x] Version, Build Date, Revision, App Name
+- [x] Wire Dependency Injection
+- [x] Auto Generate 3rd party binaries to bin/
+- [ ] Docker Build
+
+
+### Files
+
+- [ ] .dockerignore
+- [ ] .gitignore
+- [ ] main.tf
+- [ ] output.tf
+- [ ] variable.tf
+- [ ] {{.PATH}}_server.go
+- [ ] {{.PATH}}_server_register_funcs.go
+- [ ] {{.PATH}}_server_test.go
+- [ ] main.go
+- [ ] reviewdog.yaml
+- [ ] {{.App}}-deployment.yaml
+- [ ] schema.sql
+- [ ] roles.sql
+- [ ] wire.go
+- [ ] .gcloudignore
+
+
 
 ## Generated Commands
 
@@ -96,4 +115,26 @@ Use "gogen gocloud [command] --help" for more information about a command.
 
 ```commandline
 {appName} v0.1.1 (go1.11.4 darwin/amd64)
+```
+
+## Generated Files
+
+### Makefile
+
+Input: `make help`
+
+```commandline
+make [command]
+
+all                            generate all bins
+clean                          clean bin
+cover                          test coverage
+fmt                            go install all programs
+gen                            go generate
+help                           help
+install                        go install all programs
+lint                           lint
+packages                       packages
+setup                          setup
+test                           test all
 ```
