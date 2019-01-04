@@ -1,8 +1,28 @@
-# ![](https://github.com/gofunct/common/blob/master/logo/dark_logo_transparent_background.png?raw=true) GoGen 
-
+![](https://github.com/gofunct/common/blob/master/logo/dark_logo_transparent_background.png?raw=true)
+# Gogen
 **A utility for generating boilerplate code for cli tools that integrate with cloud providers**
 
-**by: Coleman Word**
+* Author: Coleman Word 
+* Email: coleman.word@gofunct.com
+* Language: Golang
+* Download: `go get github.com/gofunct/gogen/...`
+
+## Table of Contents
+
+- [Gogen](#gogen)
+  * [Table of Contents](#table-of-contents)
+  * [Gogen Commands](#gogen-commands)
+    + [`gogen`](#-gogen-)
+  * [Project Generation](#project-generation)
+    + [Features](#features)
+    + [Files](#files)
+  * [Generated Commands](#generated-commands)
+    + [`{appName} gocloud`](#--appname--gocloud-)
+    + [`{appName} version`](#--appname--version-)
+  * [Generated Files](#generated-files)
+    + [Makefile](#makefile)
+  * [File Tree](#file-tree)
+
 
 ## Gogen Commands
 
@@ -32,8 +52,9 @@ Use "gogen [command] --help" for more information about a command.
 
 ```
 
-## Project Generation Features
+## Project Generation
 
+### Features
 - [x] Generate fully functional grpc cloud service with one command(include grpc-json gateway)
 - [x] OpenCensus Tracing
 - [x] StackDriver Monitoring
@@ -138,3 +159,150 @@ packages                       packages
 setup                          setup
 test                           test all
 ```
+
+## File Tree
+
+```commandline
+
+├── LICENSE
+├── Makefile
+├── README.md
+├── cmd
+│   ├── gogen
+│   │   ├── const.go
+│   │   ├── gogen.yaml
+│   │   └── main.go
+│   └── root.go
+├── cobrafs
+│   ├── app.go
+│   ├── command.go
+│   ├── context.go
+│   ├── executor.go
+│   ├── generator.go
+│   ├── injectors.go
+│   ├── main.go
+│   ├── options.go
+│   ├── providers.go
+│   └── wire_gen.go
+├── context
+│   ├── build.go
+│   ├── config.go
+│   ├── context.go
+│   ├── dirs.go
+│   ├── entry.go
+│   ├── params.go
+│   └── runfunc.go
+├── exec
+│   ├── cmd.go
+│   ├── init.go
+│   ├── init_test.go
+│   └── version.go
+├── go.mod
+├── go.sum
+├── gocloud
+│   ├── app.go
+│   ├── aws
+│   │   ├── aws.go
+│   │   ├── blob.go
+│   │   ├── runtimevar.go
+│   │   └── user.go
+│   ├── bucket.go
+│   ├── flags.go
+│   ├── google
+│   │   ├── app.go
+│   │   ├── blob.go
+│   │   ├── db.go
+│   │   ├── gcloud.go
+│   │   ├── kube.go
+│   │   ├── run.go
+│   │   ├── runtime_config.go
+│   │   └── user.go
+│   ├── healthcheck.go
+│   ├── inject_aws.go
+│   ├── inject_gcp.go
+│   ├── inject_local.go
+│   └── wire_gen.go
+├── gogen
+│   ├── cmd
+│   │   ├── build.go
+│   │   ├── cmd.go
+│   │   ├── generators.go
+│   │   ├── init.go
+│   │   ├── protoc.go
+│   │   └── user_defined.go
+│   ├── context.go
+│   └── inject
+│       ├── injectors.go
+│       ├── providers.go
+│       └── wire_gen.go
+├── gogen.yaml
+├── main.go
+├── module
+│   ├── gen.go
+│   ├── generator
+│   │   ├── base.go
+│   │   ├── generator.go
+│   │   ├── project.go
+│   │   ├── status.go
+│   │   └── template
+│   │       ├── gen.go
+│   │       ├── init
+│   │       │   ├── Gopkg.toml.tmpl
+│   │       │   ├── api
+│   │       │   │   └── protos
+│   │       │   │       └── type
+│   │       │   ├── app
+│   │       │   │   ├── run.go.tmpl
+│   │       │   │   └── server
+│   │       │   ├── cmd
+│   │       │   │   └── server
+│   │       │   │       └── run.go.tmpl
+│   │       │   └── grapi.toml.tmpl
+│   │       └── init.go
+│   ├── generator.go
+│   ├── script
+│   │   ├── loader.go
+│   │   └── script.go
+│   ├── script.go
+│   └── testing
+│       ├── generator_mock.go
+│       └── script_mock.go
+├── protoc
+│   ├── config.go
+│   ├── config_test.go
+│   ├── plugin.go
+│   ├── providers.go
+│   └── wrapper.go
+├── templates
+│   ├── _data
+│   │   ├── {{.ProtoDir}}
+│   │   │   └── {{.Path}}.proto.tmpl
+│   │   ├── {{.RootDir}}
+│   │   │   ├── Makefile.tmpl
+│   │   │   ├── main.go.tmpl
+│   │   │   └── reviewdog.tmpl
+│   │   ├── {{.ServerDir}}
+│   │   │   ├── {{.Path}}_server.go.tmpl
+│   │   │   ├── {{.Path}}_server_register_funcs.go.tmpl
+│   │   │   └── {{.Path}}_server_test.go.tmpl
+│   │   ├── {{.StaticDir}}
+│   │   │   └── guestbook.html.tmpl
+│   │   └── {{.TfDir}}
+│   │       ├── main.tf.tmpl
+│   │       ├── output.tf.tmpl
+│   │       └── variable.tf.tmpl
+│   ├── fs.go
+│   ├── gen.go
+│   ├── vfsgen.go
+│   └── virtualfs_vfsdata.go
+├── test
+│   ├── docker_images.txt
+│   ├── user.pb.go
+│   └── user.proto
+├── tools.go
+├── usecase
+    ├── init_config.go
+    ├── init_config_test.go
+    └── initialize_project_usecase.go
+```
+.
