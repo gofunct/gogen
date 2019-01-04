@@ -56,7 +56,7 @@ func newGenerateCommands(ctx *gogen.Ctx) (cmds []*cobra.Command) {
 		}
 
 		for _, t := range tools {
-			if !strings.HasPrefix(t.Name(), "grapi-gen-") {
+			if !strings.HasPrefix(t.Name(), "gogen") {
 				continue
 			}
 			if _, ok := cmdNames[t.Name()]; ok {

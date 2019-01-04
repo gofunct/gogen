@@ -1,0 +1,68 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: temp
+  labels:
+    app: temp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: temp
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: temp
+    spec:
+      volumes:
+      - name: google-cloud-key
+        secret:
+          secretName: temp-key
+      containers:
+      - name: temp
+        image: {{IMAGE}}
+        args:
+        - "-env=gcp"
+        - "-bucket={{bucket}}"
+        - "-db_host={{db_instance}}"
+        - "-cloud_sql_region={{db_region}}"
+        - "-runtime_config={{run_var_config}}"
+        - "-motd_var={{run_var}}"
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        volumeMounts:
+        - name: google-cloud-key
+          mountPath: /var/secrets/google
+        env:
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: /var/secrets/google/key.json
+        livenessProbe:
+          httpGet:
+            path: /healthz/liveness
+            port: 8080
+        readinessProbe:
+          httpGet:
+            path: /healthz/readiness
+            port: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: temp
+  labels:
+    app: temp
+spec:
+  type: LoadBalancer
+  selector:
+    app: temp
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080

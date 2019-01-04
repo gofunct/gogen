@@ -78,7 +78,7 @@ github.com/fsnotify/fsnotify
 github.com/ghodss/yaml
 # github.com/go-sql-driver/mysql v1.4.1
 github.com/go-sql-driver/mysql
-# github.com/gofunct/common v0.0.0-20190103223513-588d44098906
+# github.com/gofunct/common v0.0.0-20190104005919-eb2aca28b7dd
 github.com/gofunct/common/files
 github.com/gofunct/common/io
 github.com/gofunct/common/errors
@@ -173,6 +173,8 @@ github.com/jessevdk/go-assets
 github.com/jessevdk/go-assets-builder
 # github.com/jessevdk/go-flags v1.4.0
 github.com/jessevdk/go-flags
+# github.com/jinzhu/inflection v0.0.0-20180308033659-04140366298a
+github.com/jinzhu/inflection
 # github.com/jmespath/go-jmespath v0.0.0-20180206201540-c2b33e8439af
 github.com/jmespath/go-jmespath
 # github.com/kisielk/errcheck v1.1.0
@@ -203,6 +205,8 @@ github.com/pelletier/go-toml
 github.com/pkg/errors
 # github.com/pmezard/go-difflib v1.0.0
 github.com/pmezard/go-difflib/difflib
+# github.com/serenize/snaker v0.0.0-20171204205717-a683aaf2d516
+github.com/serenize/snaker
 # github.com/spf13/afero v1.2.0
 github.com/spf13/afero
 github.com/spf13/afero/mem

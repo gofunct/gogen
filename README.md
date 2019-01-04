@@ -52,7 +52,7 @@ Use "gogen [command] --help" for more information about a command.
 
 ```
 
-## Project Generation
+## Project Roadmap
 
 ### Features
 - [x] Generate fully functional grpc cloud service with one command(include grpc-json gateway)
@@ -78,7 +78,7 @@ Use "gogen [command] --help" for more information about a command.
 - [ ] Docker Build
 
 
-### Files
+### Files Generated
 
 - [ ] .dockerignore
 - [ ] .gitignore
@@ -95,6 +95,10 @@ Use "gogen [command] --help" for more information about a command.
 - [ ] roles.sql
 - [ ] wire.go
 - [ ] .gcloudignore
+
+## Issues
+- [ ] change config file path to home not current directory
+
 
 
 

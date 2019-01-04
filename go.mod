@@ -5,7 +5,7 @@ require (
 	github.com/aws/aws-sdk-go v1.16.11
 	github.com/bradleyjkemp/cupaloy v2.3.0+incompatible
 	github.com/go-sql-driver/mysql v1.4.1
-	github.com/gofunct/common v0.0.0-20190103223513-588d44098906
+	github.com/gofunct/common v0.0.0-20190104005919-eb2aca28b7dd
 	github.com/gogo/protobuf v1.2.0
 	github.com/golang/mock v1.2.0
 	github.com/golang/protobuf v1.2.0
@@ -18,6 +18,7 @@ require (
 	github.com/jessevdk/go-assets-builder v0.0.0-20130903091706-b8483521738f
 	github.com/kisielk/errcheck v1.1.0
 	github.com/mitchellh/gox v0.4.0
+	github.com/serenize/snaker v0.0.0-20171204205717-a683aaf2d516
 	github.com/spf13/afero v1.2.0
 	github.com/spf13/cobra v0.0.3
 	github.com/spf13/pflag v1.0.3

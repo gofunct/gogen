@@ -51,14 +51,14 @@ func (c *Ctx) DefaultEntries(params *Params) []*Entry {
 	//root := c.GetRootDir()
 	return []*Entry{
 		/*
-		{Path: root.Join(".gitignore").String(), Template: templates.GitIgnoreTemplate()},
-		{Path: root.Join(".reviewdog.yml").String(), Template: templates.ReviewDogTemplate()},
-		{Path: root.Join(".travis.yml").String(), Template: templates.TravisTemplate()},
-		{Path: root.Join("Makefile").String(), Template: templates.MakefileTemplate()},
-		{Path: root.Join("cmd", params.Name, "main.go").String(), Template: templates.TemplateMain},
-		{Path: root.Join("pkg", params.Name, "config.go").String(), Template: templates.ConfigTemplate()},
-		{Path: root.Join("pkg", params.Name, "context.go").String(), Template: templates.ContextTemplate()},
-		{Path: root.Join("pkg", params.Name, "cmd", "cmd.go").String(), Template: templates.TemplateTemplate()},
+			{Path: root.Join(".gitignore").String(), Template: templates.GitIgnoreTemplate()},
+			{Path: root.Join(".reviewdog.yml").String(), Template: templates.ReviewDogTemplate()},
+			{Path: root.Join(".travis.yml").String(), Template: templates.TravisTemplate()},
+			{Path: root.Join("Makefile").String(), Template: templates.MakefileTemplate()},
+			{Path: root.Join("cmd", params.Name, "main.go").String(), Template: templates.TemplateMain},
+			{Path: root.Join("pkg", params.Name, "config.go").String(), Template: templates.ConfigTemplate()},
+			{Path: root.Join("pkg", params.Name, "context.go").String(), Template: templates.ContextTemplate()},
+			{Path: root.Join("pkg", params.Name, "cmd", "cmd.go").String(), Template: templates.TemplateTemplate()},
 		*/
 	}
 }

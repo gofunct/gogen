@@ -5,8 +5,8 @@ import (
 	"github.com/gofunct/common/files"
 	"github.com/gofunct/common/io"
 	"github.com/gofunct/gogen/context"
-	"github.com/gofunct/gogen/gogen/cmd"
 	"github.com/gofunct/gogen/gogen"
+	"github.com/gofunct/gogen/gogen/cmd"
 	"os"
 )
 

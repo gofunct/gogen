@@ -101,5 +101,9 @@ install: ## go install all programs
 fmt: ## go install all programs
 	go fmt ./...
 
+demogen: ## delete and regenerate ../demogen
+	rm -rf ../demogen
+	cd ..; gogen init demogen
+
 help: ## help
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST) | sort

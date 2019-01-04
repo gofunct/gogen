@@ -10,8 +10,8 @@ var (
 type Build struct {
 	AppName       string
 	Version       string
-	Revision  	string
-	BuildDate 	string
+	Revision      string
+	BuildDate     string
 	Description   string
 	Service       string
 	Domain        string

@@ -15,8 +15,8 @@ type cliFlags struct {
 	dbName            string
 	dbUser            string
 	dbPassword        string
-	runVar           string
-	runVarWaitTime   time.Duration
+	runVar            string
+	runVarWaitTime    time.Duration
 	listen            string
 	cloudSQLRegion    string
 	runtimeConfigName string
@@ -25,7 +25,7 @@ type cliFlags struct {
 var envFlag string
 
 func NewGoCloudCommand(config *viper.Viper) *cobra.Command {
-	cf  := new(cliFlags)
+	cf := new(cliFlags)
 
 	cmd := &cobra.Command{
 		Use:   "gocloud",

@@ -16,3 +16,5 @@ func New(fs afero.Fs, ui ui.UI) module.Generator {
 type generator struct {
 	module.ProjectGenerator
 }
+
+// GenerateProject(rootDir, pkgName string) error

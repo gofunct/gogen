@@ -7,7 +7,6 @@ import (
 	"github.com/gofunct/gogen/exec"
 	"github.com/gofunct/gogen/gogen"
 	"github.com/spf13/cobra"
-	"github.com/gofunct/gogen/gocloud"
 )
 
 func NewGogenCommand(ctx *gogen.Ctx) *cobra.Command {
@@ -33,7 +32,6 @@ func NewGogenCommand(ctx *gogen.Ctx) *cobra.Command {
 		NewProtocCommand(ctx),
 		NewBuildCommand(ctx),
 		exec.NewVersionCommand(ctx.IO, ctx.Build),
-		gocloud.NewGoCloudCommand(ctx.Viper),
 	)
 	cmd.AddCommand(newGenerateCommands(ctx)...)
 	cmd.AddCommand(NewUserDefinedCommands(ctx)...)
