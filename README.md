@@ -98,6 +98,7 @@ Use "gogen [command] --help" for more information about a command.
 
 ## Issues
 - [ ] change config file path to home not current directory
+- [ ] could not find /Users/coleman/go/src/github.com/gofunct/tools.go
 
 
 
@@ -134,7 +135,31 @@ Global Flags:
 Use "gogen gocloud [command] --help" for more information about a command.
 
 ```
+### `gogen gen`
 
+```commandline
+
+Usage:
+  gogen generate [command]
+
+Aliases:
+  generate, g, gen
+
+Available Commands:
+  gen-command          
+  gen-scaffold-service 
+  gen-service          
+  gen-type             
+
+Flags:
+  -h, --help   help for generate
+
+Global Flags:
+      --debug     Debug level output
+  -v, --verbose   Verbose level output
+
+Use "gogen generate [command] --help" for more information about a command.
+```
 
 ### `{appName} version`
 
